@@ -31,6 +31,7 @@ GitHub Pages 使用 `main` 分支根目录。GitHub 仅存储和展示成品；P
 
 ```sh
 python scripts/check_site.py
+python scripts/check_live.py  # 发布后核对线上字节
 python -m http.server 8000
 ```
 
