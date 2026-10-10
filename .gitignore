@@ -1,0 +1,4 @@
+qa-*.html
+__pycache__/
+*.png
+*.log

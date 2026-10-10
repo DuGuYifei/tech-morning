@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#101f27">
+  <meta name="description" content="技术晨刊第 001 期：把智能用在正确的位置。读懂 Decisions API、Haiku 5.5、Agent 系统分工与 ToolGrad，让技术信息变成可落地的判断。">
+  <title>把智能用在正确的位置 · 技术晨刊 · 2026.10.11</title>
+  <link rel="canonical" href="https://duguyifei.github.io/tech-morning/2026-10-11-agent-systems.html">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="stylesheet" href="assets/style-v1.css">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:title" content="把智能用在正确的位置 · 技术晨刊">
+  <meta property="og:description" content="2026.10.11 · Decisions API / Haiku 5.5 / Agent 架构 / ToolGrad">
+  <meta property="og:url" content="https://duguyifei.github.io/tech-morning/2026-10-11-agent-systems.html">
+</head>
+<body>
+<a class="skip-link" href="#main">跳至正文</a>
+<header class="site-header">
+  <div class="shell topbar">
+    <a class="brand" href="index.html" aria-label="技术晨刊首页">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span><span class="brand-name">技术晨刊</span><span class="brand-sub">THE TECH MORNING</span></span>
+    </a>
+    <nav class="header-nav" aria-label="主导航">
+      <a href="index.html">最新一期</a>
+      <a href="archive.html">往期归档 <span aria-hidden="true">↗</span></a>
+      <span class="header-date">2026.10.11<br>SUNDAY EDITION</span>
+    </nav>
+  </div>
+</header>
+<section class="hero" aria-labelledby="issue-title">
+  <div class="shell">
+    <div class="edition-line">
+      <div class="edition-label"><span class="status-dot" aria-hidden="true"></span><span class="eyebrow">Issue 001 / The Agent Edition</span></div>
+      <time class="eyebrow" datetime="2026-10-11">2026 年 10 月 11 日 · 星期日</time>
+    </div>
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <p class="hero-kicker">本期主题 / AGENT 系统与工具设计</p>
+        <h1 id="issue-title">把智能用在<br><span>正确的位置。</span></h1>
+        <p class="hero-deck">从一次轻量判断，到一条可靠的工具链。<br>今天，我们关心模型之外的分工、边界与反馈。</p>
+        <a class="hero-cta" href="#news">开始阅读 <span class="arrow" aria-hidden="true">↓</span></a>
+      </div>
+      <figure class="hero-art">
+        <img src="assets/agent-system-v1.svg" width="520" height="390" alt="Agent 系统示意：应用服务连接运行循环，运行循环按需使用计算环境，事件与结果回传。">
+        <figcaption><span>FIG. 001 / A SYSTEM, NOT JUST A MODEL</span><span>原创示意</span></figcaption>
+      </figure>
+    </div>
+    <div class="hero-bottom">
+      <p>两则动态，一篇架构读本，一篇论文选读。</p>
+      <span class="issue-number">LESS NOISE. MORE SIGNAL.</span>
+    </div>
+  </div>
+</section>
+<div class="contents">
+  <div class="shell contents-inner">
+    <p class="contents-title">IN THIS ISSUE</p>
+    <nav aria-label="本期目录">
+      <a href="#news"><span>01—02</span> 技术动态</a>
+      <a href="#architecture"><span>03</span> 架构读本</a>
+      <a href="#paper"><span>04</span> 论文选读</a>
+    </nav>
+    <p class="contents-note">为理解而读，为实践而选。</p>
+  </div>
+</div>
+<main id="main">
+  <section class="shell editor-note" aria-labelledby="editor-title">
+    <div>
+      <p class="section-kicker">EDITOR’S NOTE / 开刊语</p>
+      <h2 id="editor-title">能力升级之后，<br>重新思考分工。</h2>
+    </div>
+    <p class="note-copy">让每一步都调用最强模型，并不自动带来最可靠的系统。本期沿着一条线索展开：把有限判断交给专门接口，把高频任务交给合适模型，把运行职责拆清楚，再用真实反馈检验工具链。下面区分官方信息与编辑判断，给出值得继续追问的问题。</p>
+  </section>
+
+  <section class="shell news-section" id="news" aria-labelledby="news-heading">
+    <div class="section-header">
+      <div class="section-heading"><p class="section-kicker">THE SIGNAL / 近期动态</p><h2 id="news-heading">值得注意的变化</h2></div>
+      <p class="section-note">不追逐每条更新。<br>只看改变设计选择的信号。</p>
+    </div>
+    <div class="news-grid">
+      <!-- ARTICLE_NEWS_1 -->
+      <article class="news-story" id="decisions-api" aria-labelledby="news-one-title">
+        <div class="article-topline"><span>01 / OPENAI</span><span class="article-tag">接口设计</span></div>
+        <h3 id="news-one-title">Decisions API：<br>把判断放在前面</h3>
+        <div class="article-body">
+          <p class="article-lead">不是每个任务都需要一段生成式回答。有时，系统只需要选对下一步。</p>
+          <p>OpenAI 于 10 月 6 日发布 Decisions API 测试版，支持 GPT-6 Luna，接收文本和图像，返回概率、预设选项或分数，用于分类与路由。官方称其速度约为 Responses API 的 10 倍；这一性能说法来自厂商，本刊未独立测试。</p>
+          <p>接口形态的变化很直接：当输出空间有限，开发者可以把“做出选择”单独建模，而不必先生成一大段文字再解析答案。</p>
+        </div>
+        <aside class="article-insight" aria-label="编辑判断"><strong>编辑判断 / 先测边界</strong><p>把有限路由与复杂生成拆开。上线前同时测误分率、延迟与升级路径；概率能否用作阈值，还要经过校准。</p></aside>
+        <div class="source-list"><span class="source-label">SOURCES</span><a href="https://developers.openai.com/api/docs/changelog" target="_blank" rel="noopener noreferrer">官方更新日志 ↗</a><a href="https://developers.openai.com/api/docs/guides/decisions" target="_blank" rel="noopener noreferrer">API 文档 ↗</a><span>发布：<time datetime="2026-10-06">2026.10.06</time></span></div>
+      </article>
+      <!-- ARTICLE_NEWS_2 -->
+      <article class="news-story" id="haiku-5-5" aria-labelledby="news-two-title">
+        <div class="article-topline"><span>02 / ANTHROPIC</span><span class="article-tag">模型分工</span></div>
+        <h3 id="news-two-title">Haiku 5.5：<br>小模型接住高频工作</h3>
+        <div class="article-body">
+          <p class="article-lead">小模型的价值，不只在价格，而在能否可靠地承担重复工作。</p>
+          <p>Anthropic 于 10 月 7 日推出 Haiku 5.5，面向摘要、上下文压缩、分类与编码子代理，并首次为 Haiku 引入 effort 设置。官方仍建议复杂的 agent 编码工作使用更大的模型。</p>
+          <p>输入不超过 10 万 token 时，每百万输入 / 输出 token 的价格为 0.10 / 0.50 美元；超过这一门槛时为 0.50 / 2.50 美元。分工策略因此也要考虑上下文长度，而不只是调用次数。</p>
+        </div>
+        <aside class="article-insight" aria-label="编辑判断"><strong>编辑判断 / 算完整成本</strong><p>衡量“每个成功任务的成本”，把重试、复核和升级到大模型都算进去。尤其要测试定价门槛附近的长上下文任务。</p></aside>
+        <div class="source-list"><span class="source-label">SOURCE</span><a href="https://www.anthropic.com/claude-haiku-5-5" target="_blank" rel="noopener noreferrer">官方发布说明 ↗</a><span>发布：<time datetime="2026-10-07">2026.10.07</time></span></div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ARTICLE_ARCHITECTURE -->
+  <section class="feature-section" id="architecture" aria-labelledby="architecture-heading">
+    <div class="shell feature-grid">
+      <aside class="feature-aside">
+        <span class="feature-number" aria-hidden="true">03</span>
+        <p class="section-kicker">UNDER THE HOOD / 技术读本</p>
+        <h2 id="architecture-heading">把系统拆开，<br>让边界清楚。</h2>
+        <p class="aside-note">读 OpenAI Agents API 架构文档。<br>理解一次调用背后的职责归属。</p>
+      </aside>
+      <article class="feature-article" aria-labelledby="architecture-title">
+        <h3 id="architecture-title">一个 agent，三份职责</h3>
+        <div class="article-body">
+          <p class="article-lead">Agent 的推理循环、执行环境和产品服务，是三件互相关联、却不该混为一谈的事。</p>
+          <p>OpenAI Agents API 的架构文档把它们拆开：harness 负责模型与工具循环、会话；environment 提供计算与文件；application server 负责产品集成、提交任务、处理事件及函数工具。</p>
+          <figure class="flow-diagram">
+            <div class="flow-row" aria-label="应用服务连接 Agent 运行层；运行层按需使用执行环境">
+              <div class="flow-node"><span class="node-en">APPLICATION SERVER</span><strong>产品与任务入口</strong></div>
+              <span class="flow-arrow" aria-hidden="true">⇄</span>
+              <div class="flow-node"><span class="node-en">AGENT HARNESS</span><strong>循环与会话</strong></div>
+              <span class="flow-arrow" aria-hidden="true">⇄</span>
+              <div class="flow-node"><span class="node-en">ENVIRONMENT · OPTIONAL</span><strong>计算与文件</strong></div>
+            </div>
+            <div class="flow-feedback">EVENTS / RESULTS / LIFECYCLE</div>
+            <figcaption>图 02 · 依据官方职责划分绘制的概念示意；environment 是可选组件。</figcaption>
+          </figure>
+          <h4>可选的环境，不等于省略的生命周期</h4>
+          <p>执行环境并非所有应用都需要。但采用自托管环境时，资源创建、重新连接、关闭与文件保留，都需要被纳入生命周期设计。一次请求成功，并不能说明这些后续环节已经可靠。</p>
+          <h4>编辑判断：恢复能力应该落在产品里</h4>
+          <p>应用侧应持久化任务进度、等待原因与结果，为写操作设计幂等机制。测试也要覆盖“客户端断线”和“工具超时之后怎么办”：能否恢复任务、避免重复写入，并让用户知道当前状态？</p>
+        </div>
+        <aside class="feature-takeaway"><strong>本篇带走</strong><p>先说清楚谁负责什么，<br>再决定每一层用什么。</p></aside>
+        <div class="source-list"><span class="source-label">READING</span><a href="https://developers.openai.com/api/docs/guides/agents-api/architecture" target="_blank" rel="noopener noreferrer">Agents API 架构文档 ↗</a><span>无独立发布日期 · 核对：2026.10.11（UTC+8）</span></div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ARTICLE_PAPER -->
+  <section class="shell paper-section" id="paper" aria-labelledby="paper-heading">
+    <div class="section-header">
+      <div class="section-heading"><p class="section-kicker">THE READING ROOM / 论文选读</p><h2 id="paper-heading">让工具学习有据可依</h2></div>
+      <p class="section-note">读方法，也读实验边界。<br>本篇为选读，非当日新论文。</p>
+    </div>
+    <div class="paper-panel">
+      <aside class="paper-aside">
+        <span class="paper-label">PAPER / 04</span>
+        <div class="paper-glyph" aria-hidden="true"></div>
+        <p>从可执行的工具路径出发，<br>反向合成训练问题与答案。</p>
+        <p class="paper-citation">TOOLGRAD<br>arXiv:2508.04086 · v3<br>2026.06.17</p>
+      </aside>
+      <article class="paper-article" aria-labelledby="paper-title">
+        <h3 id="paper-title">ToolGrad：<br>先造答案，再补问题</h3>
+        <div class="article-body">
+          <p class="article-lead">与其先写一个问题、再赌工具链能跑通，不如从真正执行成功的路径开始。</p>
+          <p>ToolGrad 先执行候选 API、评估结果，再扩展有效工具路径，最后合成匹配的问题与答案。这里的“梯度”是文本反馈，用来指导搜索，并非微积分意义上的梯度。</p>
+          <h4>实验说明了什么</h4>
+          <p>论文构建 ToolGrad-500 数据集，并微调 Gemma-3 的 1B、4B、12B 模型。其数据生成通过率为 99.8%，DFS 基线为 63.8%；平均有效工具使用次数为 3.4 与 2.1。注意：前一指标衡量数据生成，不能解读成 agent 的任务成功率。</p>
+          <h4>编辑判断 / 适合冷启动，仍需真实验证</h4>
+          <p>这条路线值得用于内部工具训练数据的冷启动，但最终要留出真实用户任务做验证。ToolBench 与 BFCL 实验仅涉及单轮交互；多轮效果、缺少推理示例、合成语言与真实表达的差距，以及数据扩展后的收益趋缓，都是方法的边界。</p>
+        </div>
+        <p class="paper-caution">阅读提醒：论文初版发表于 2025.08.06；本期阅读 v3（2026.06.17），并参考 2026.09.10 的 Google Research 解读。</p>
+        <div class="source-list"><span class="source-label">SOURCES</span><a href="https://arxiv.org/html/2508.04086v3" target="_blank" rel="noopener noreferrer">论文全文（v3）↗</a><a href="https://research.google/blog/toolgrad-efficient-tool-use-dataset-generation-with-textual-gradients/" target="_blank" rel="noopener noreferrer">Google Research 解读 ↗</a></div>
+      </article>
+    </div>
+  </section>
+  <section class="shell endnote" aria-labelledby="endnote-title">
+    <div><p class="section-kicker">BEFORE YOU GO / 收刊</p><h2 id="endnote-title">把一个问题，<br>带回自己的系统。</h2></div>
+    <div><p>如果今天只能检查一件事：找出系统里最常见的一条工具调用路径，问问它的选择、执行和恢复分别由谁负责。模型能力在变化，清楚的职责和可验证的结果始终有用。</p><p>本期内容可通过<a href="2026-10-11-agent-systems.html">日期固定链接</a>再次阅读；更多期数将保留在<a href="archive.html">往期归档</a>。</p></div>
+  </section>
+</main>
+<footer class="site-footer">
+  <div class="shell">
+    <div class="footer-inner">
+      <a href="index.html" class="footer-brand">技术晨刊<span>A CLEARER VIEW OF WHAT’S NEXT.</span></a>
+      <nav class="footer-links" aria-label="页脚导航"><a href="index.html">最新一期</a><a href="archive.html">往期归档</a><a href="#issue-title">回到顶部 ↑</a></nav>
+      <p class="footer-small">ISSUE 001<br>2026.10.11 · UTC+8</p>
+    </div>
+    <p class="footer-disclosure">来源与方法：依据公开的一手资料整理，来源随文列出；“编辑判断”为分析意见。性能、价格与实验数据均归属于所引来源，本刊未进行独立基准测试。资料核对日：2026 年 10 月 11 日（UTC+8）。图示为原创概念表达，不代表官方产品界面。</p>
+  </div>
+</footer>
+</body>
+</html>

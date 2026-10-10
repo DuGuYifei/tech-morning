@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="520" height="390" viewBox="0 0 520 390" fill="none" role="img" aria-labelledby="title desc">
+<title id="title">Agent 系统：应用服务、运行层与可选环境</title><desc id="desc">抽象系统图。应用服务连接 Agent 运行层，运行层负责循环与会话，可按需使用计算环境，事件与结果返回应用服务。</desc>
+<defs><pattern id="grid" width="26" height="26" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r=".65" fill="#49615e"/></pattern><linearGradient id="panel" x1="185" y1="137" x2="332" y2="255" gradientUnits="userSpaceOnUse"><stop stop-color="#314d4a"/><stop offset="1" stop-color="#1c3439"/></linearGradient><marker id="arrow" viewBox="0 0 6 6" refX="5" refY="3" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 6 3 0 6" fill="#a4bd7c"/></marker></defs>
+<rect x="20" y="9" width="480" height="349" fill="url(#grid)" opacity=".43"/>
+<circle cx="263" cy="192" r="151" stroke="#344d4e" stroke-dasharray="2 8"/><circle cx="263" cy="192" r="116" stroke="#354e4b"/>
+<path d="M57 195H173" stroke="#a4bd7c" marker-end="url(#arrow)"/><path d="M336 195H456" stroke="#a4bd7c" stroke-dasharray="4 5" marker-end="url(#arrow)"/>
+<path d="M262 138V74H427V156" stroke="#6c895f" stroke-dasharray="4 5" marker-end="url(#arrow)"/>
+<path d="M428 230V308H261V253" stroke="#8da870" marker-end="url(#arrow)"/>
+<path d="M183 161 208 143M316 231 336 215" stroke="#536c63"/>
+<rect x="173" y="137" width="166" height="116" rx="10" fill="#132a2f" stroke="#536f65"/><rect x="181" y="129" width="166" height="116" rx="10" fill="url(#panel)" stroke="#a8c187"/>
+<rect x="195" y="145" width="6" height="6" fill="#d5f67b"/><text x="210" y="151" fill="#b1c9bb" font-family="monospace" font-size="9" letter-spacing="1.4">AGENT HARNESS</text>
+<text x="262" y="199" fill="#e8f4d8" font-family="Arial,sans-serif" font-size="32" font-weight="500" text-anchor="middle" letter-spacing="-1">AGENT</text><text x="263" y="224" fill="#a4bcae" font-family="monospace" font-size="9" text-anchor="middle" letter-spacing="1.6">LOOP · TOOLS · SESSION</text>
+<rect x="15" y="163" width="106" height="66" rx="3" fill="#182e33" stroke="#4b655f"/><text x="32" y="181" fill="#7e9a90" font-family="monospace" font-size="8" letter-spacing="1">01 / APP SERVER</text><text x="32" y="211" fill="#c1d4c5" font-family="Arial,sans-serif" font-size="17">Product</text>
+<rect x="378" y="155" width="123" height="76" rx="3" fill="#d5f67b"/><text x="395" y="176" fill="#526c37" font-family="monospace" font-size="8" letter-spacing="1">03 / OPTIONAL</text><text x="395" y="205" fill="#14291f" font-family="Arial,sans-serif" font-size="18">Compute</text><text x="395" y="221" fill="#526c37" font-family="monospace" font-size="8">COMPUTE + FILES</text>
+<rect x="179" y="51" width="139" height="43" rx="3" fill="#192e33" stroke="#4b655f"/><text x="197" y="78" fill="#b1c2b3" font-family="monospace" font-size="10" letter-spacing="1">FUNCTION TOOLS</text><circle cx="302" cy="73" r="3" fill="#d5f67b"/>
+<rect x="217" y="287" width="153" height="42" rx="3" fill="#192e33" stroke="#637d64"/><text x="233" y="314" fill="#b9cdb3" font-family="monospace" font-size="10" letter-spacing="1">EVENTS / RESULTS</text><path d="m344 304 4 4-4 4" stroke="#d5f67b"/>
+<circle cx="429" cy="73" r="3.5" fill="#d5f67b"/><circle cx="262" cy="308" r="3.5" fill="#d5f67b"/>
+<text x="41" y="47" fill="#7b978e" font-family="monospace" font-size="8" letter-spacing="1.2">SYSTEM / 001</text><text x="424" y="349" fill="#7b978e" font-family="monospace" font-size="8" letter-spacing="1">CLOSED LOOP</text>
+<path d="M20 31V16h15M487 330v15h-15" stroke="#6b866e"/>
+</svg>
