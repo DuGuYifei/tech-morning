@@ -8,7 +8,7 @@
 - `YYYY-MM-DD-short-topic.html`：每期固定链接；日期采用 UTC+8。
 - `archive.html`：完整历史目录，最新在前。只链接实际存在的期次。
 - `issues.json`：仅期次索引，不保存文章内容，也不生成页面。
-- `assets/style-v1.css`：共享样式；破坏性改版新建 v2 等版本，保留旧版文件。
+- `assets/style-v1.1.css`：首期当前共享样式（v1 保留）；破坏性改版新建 v2 等版本，保留旧版文件。
 - `assets/`：本地原创图形。旧期依赖的资源不覆盖、不移除。
 - `.nojekyll`：原样发布静态文件，无 Markdown 内容生成器。
 
