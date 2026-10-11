@@ -91,7 +91,7 @@
         <div class="article-topline"><span>01 / OPENAI</span><span class="article-tag">接口设计</span></div>
         <h3 id="news-one-title">Decisions API：<br>把判断放在前面</h3>
         <div class="article-body">
-          <p class="article-lead">不是每个任务都需要一段生成式回答。有时，系统只需要选对下一步。</p>
+          <p class="article-lead">不是每个任务都需要一段生成式回答。有时，系统只需要选对下一步。</p><figure class="editor-figure" style="margin:26px 0;"><a href="assets/decisions-output-map-v1.png" target="_blank" rel="noopener noreferrer" aria-label="查看完整图解：按输出需求选择接口：条件概率、固定选项和等级评分用 Decisions；自定义 JSON 或解释文字用 Responses 与 Structured Outputs；工具参数请求用 function calling。"><img src="assets/decisions-output-map-v1.png" width="1600" height="1808" alt="按输出需求选择接口：条件概率、固定选项和等级评分用 Decisions；自定义 JSON 或解释文字用 Responses 与 Structured Outputs；工具参数请求用 function calling。" loading="lazy" style="display:block;width:100%;height:auto;border-radius:10px;"></a><figcaption style="font-size:14px;line-height:1.8;margin-top:12px;">图解：依据官方文档按输出需求整理，属于编辑示意；不代表简单与复杂任务的统一分界。 <a href="https://developers.openai.com/api/docs/guides/decisions" target="_blank" rel="noopener noreferrer" style="text-decoration:underline;">原始出处 ↗</a> · 图示核验：2026.10.12</figcaption></figure>
           <p>OpenAI 于 10 月 6 日发布 Decisions API 测试版，支持 GPT-6 Luna，接收文本和图像，返回概率、预设选项或分数，用于分类与路由。官方称其速度约为 Responses API 的 10 倍；这一性能说法来自厂商，本刊未独立测试。</p>
           <p>接口形态的变化很直接：当输出空间有限，开发者可以把“做出选择”单独建模，而不必先生成一大段文字再解析答案。</p>
         </div>
@@ -121,10 +121,7 @@
         <p class="section-kicker">UNDER THE HOOD / 技术读本</p>
         <h2 id="architecture-heading">把系统拆开，<br>让边界清楚。</h2>
         <p class="aside-note">读 OpenAI Agents API 架构文档。<br>理解一次调用背后的职责归属。</p>
-      <figure class="architecture-art">
-        <img src="assets/agent-system-v1.svg" width="520" height="390" alt="Agent 系统示意：应用服务连接运行循环，运行循环按需使用计算环境，事件与结果回传。">
-        <figcaption><span>FIG. 001 / A SYSTEM, NOT JUST A MODEL</span><span>原创示意</span></figcaption>
-      </figure>
+      <figure class="editor-figure" style="margin:26px 0;"><a href="assets/agent-responsibility-map-v2.png" target="_blank" rel="noopener noreferrer" aria-label="查看完整图解：Agent职责图：应用服务负责产品与任务入口，运行层负责模型和工具循环与会话，可选执行环境提供计算和文件。"><img src="assets/agent-responsibility-map-v2.png" width="1600" height="1648" alt="Agent职责图：应用服务负责产品与任务入口，运行层负责模型和工具循环与会话，可选执行环境提供计算和文件。" loading="lazy" style="display:block;width:100%;height:auto;border-radius:10px;"></a><figcaption style="font-size:14px;line-height:1.8;margin-top:12px;">图解：依据官方架构文档整理三类职责；组件关系示意，不是严格执行顺序。 <a href="https://developers.openai.com/api/docs/guides/agents-api/architecture" target="_blank" rel="noopener noreferrer" style="text-decoration:underline;">原始出处 ↗</a> · 图示核验：2026.10.12</figcaption></figure>
       </aside>
       <article class="feature-article" aria-labelledby="architecture-title">
         <h3 id="architecture-title">一个 agent，三份职责</h3>
@@ -169,7 +166,7 @@
       <article class="paper-article" aria-labelledby="paper-title">
         <h3 id="paper-title">ToolGrad：<br>先造答案，再补问题</h3>
         <div class="article-body">
-          <p class="article-lead">与其先写一个问题、再赌工具链能跑通，不如从真正执行成功的路径开始。</p>
+          <p class="article-lead">与其先写一个问题、再赌工具链能跑通，不如从真正执行成功的路径开始。</p><figure class="editor-figure" style="margin:26px 0;"><a href="assets/toolgrad-path-map-v1.png" target="_blank" rel="noopener noreferrer" aria-label="查看完整图解：ToolGrad迭代流程：提议候选API，并行执行生成报告，依报告选API扩展工作流，更新问题工作流与答案。"><img src="assets/toolgrad-path-map-v1.png" width="1600" height="1984" alt="ToolGrad迭代流程：提议候选API，并行执行生成报告，依报告选API扩展工作流，更新问题工作流与答案。" loading="lazy" style="display:block;width:100%;height:auto;border-radius:10px;"></a><figcaption style="font-size:14px;line-height:1.8;margin-top:12px;">图解：ToolGrad v3方法的编辑简化示意。每轮根据执行报告选择API并更新问答样本，不表示每一步都训练模型。 <a href="https://arxiv.org/html/2508.04086v3" target="_blank" rel="noopener noreferrer" style="text-decoration:underline;">原始出处 ↗</a> · 图示核验：2026.10.12</figcaption></figure>
           <p>ToolGrad 先执行候选 API、评估结果，再扩展有效工具路径，最后合成匹配的问题与答案。这里的“梯度”是文本反馈，用来指导搜索，并非微积分意义上的梯度。</p>
           <h4>实验说明了什么</h4>
           <p>论文构建 ToolGrad-500 数据集，并微调 Gemma-3 的 1B、4B、12B 模型。其数据生成通过率为 99.8%，DFS 基线为 63.8%；平均有效工具使用次数为 3.4 与 2.1。注意：前一指标衡量数据生成，不能解读成 agent 的任务成功率。</p>
@@ -216,6 +213,7 @@
     </div>
     <p class="edition-update">本期增补 · 2026.10.11（UTC+8）：新增科技趣闻与主题直达看点，保留原有四篇内容。</p>
     <p class="edition-update">技术修正 · 2026.10.12（UTC+8）：站点已使用 news.liuyifei.tech；本页 canonical 与分享 URL 随之更新，历史正文未改动。</p>
+    <p class="edition-update">图解增补 · 2026.10.12（UTC+8）：新增接口分工与ToolGrad流程图，重绘Agent职责图以便手机阅读；保留原有新闻正文与来源。全部配图为原创编辑示意，可点击查看原图。</p>
     <p class="footer-disclosure">来源与方法：依据公开的一手资料整理，来源随文列出；“编辑判断”为分析意见。性能、价格与实验数据均归属于所引来源，本刊未进行独立基准测试。资料核对日：2026 年 10 月 11 日（UTC+8）。图示为原创概念表达，不代表官方产品界面。</p>
   </div>
 </footer>

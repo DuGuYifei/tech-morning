@@ -6,7 +6,8 @@
     "issue": "002",
     "theme": "速度、质量与证据",
     "summary": "Ultrafast · ReviewBench · GitSkills · 科技趣闻：IKEA × Xbox",
-    "updated": "2026-10-12"
+    "updated": "2026-10-12",
+    "update_note": "2026-10-12图解增补：三张原创解释图，优化手机可读性，正文事实与来源保留。"
   },
   {
     "date": "2026-10-11",
@@ -16,6 +17,6 @@
     "theme": "Agent 系统与工具设计",
     "summary": "Decisions API · Haiku 5.5 · Agent 架构 · ToolGrad · 科技趣闻：地平线 6 × 便利店",
     "updated": "2026-10-12",
-    "update_note": "新增科技趣闻与主题直达看点，保留原有四篇内容。 2026-10-12技术修正：canonical与分享URL更新为news.liuyifei.tech，历史正文不变。"
+    "update_note": "新增科技趣闻与主题直达看点，保留原有四篇内容。 2026-10-12技术修正：canonical与分享URL更新为news.liuyifei.tech，历史正文不变。 2026-10-12图解增补：三张原创解释图，优化手机可读性，正文事实与来源保留。"
   }
 ]
