@@ -5,15 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light">
   <meta name="theme-color" content="#101f27">
-  <meta name="description" content="技术晨刊第 001 期：把智能用在正确的位置。读懂 Decisions API、Haiku 5.5、Agent 系统分工与 ToolGrad，让技术信息变成可落地的判断。">
+  <meta name="description" content="技术晨刊第 001 期：把智能用在正确的位置。Decisions API、Haiku 5.5、Agent 架构与 ToolGrad，外加《地平线 6》便利店跨界趣闻。">
   <title>把智能用在正确的位置 · 技术晨刊 · 2026.10.11</title>
   <link rel="canonical" href="https://about.liuyifei.tech/tech-morning/2026-10-11-agent-systems.html">
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
-  <link rel="stylesheet" href="assets/style-v1.1.css">
+  <link rel="stylesheet" href="assets/style-v1.2.css">
   <meta property="og:type" content="article">
   <meta property="og:locale" content="zh_CN">
   <meta property="og:title" content="把智能用在正确的位置 · 技术晨刊">
-  <meta property="og:description" content="2026.10.11 · Decisions API / Haiku 5.5 / Agent 架构 / ToolGrad">
+  <meta property="og:description" content="2026.10.11 · Decisions API / Haiku 5.5 / Agent 架构 / ToolGrad / 科技趣闻">
   <meta property="og:url" content="https://about.liuyifei.tech/tech-morning/2026-10-11-agent-systems.html">
 </head>
 <body>
@@ -44,24 +44,29 @@
         <p class="hero-deck">从一次轻量判断，到一条可靠的工具链。<br>今天，我们关心模型之外的分工、边界与反馈。</p>
         <a class="hero-cta" href="#news">开始阅读 <span class="arrow" aria-hidden="true">↓</span></a>
       </div>
-      <figure class="hero-art">
-        <img src="assets/agent-system-v1.svg" width="520" height="390" alt="Agent 系统示意：应用服务连接运行循环，运行循环按需使用计算环境，事件与结果回传。">
-        <figcaption><span>FIG. 001 / A SYSTEM, NOT JUST A MODEL</span><span>原创示意</span></figcaption>
-      </figure>
+      <nav class="issue-picks" aria-labelledby="picks-heading">
+        <div class="picks-heading"><h2 id="picks-heading">本期看点</h2><span>05 STORIES / 任选一篇开始 ↘</span></div>
+        <a class="pick" href="#decisions-api"><span class="pick-number">01</span><span class="pick-copy"><small>技术动态 · OPENAI</small><strong>Decisions API：把判断放在前面</strong></span><span class="pick-arrow" aria-hidden="true">↗</span></a>
+        <a class="pick" href="#haiku-5-5"><span class="pick-number">02</span><span class="pick-copy"><small>技术动态 · ANTHROPIC</small><strong>Haiku 5.5：小模型接住高频工作</strong></span><span class="pick-arrow" aria-hidden="true">↗</span></a>
+        <a class="pick" href="#architecture"><span class="pick-number">03</span><span class="pick-copy"><small>架构读本 · AGENT</small><strong>一个 agent，三份职责</strong></span><span class="pick-arrow" aria-hidden="true">↗</span></a>
+        <a class="pick" href="#paper"><span class="pick-number">04</span><span class="pick-copy"><small>论文选读 · TOOLGRAD</small><strong>ToolGrad：先造答案，再补问题</strong></span><span class="pick-arrow" aria-hidden="true">↗</span></a>
+        <a class="pick pick-curiosity" href="#curiosity"><span class="pick-number">05</span><span class="pick-copy"><small>科技趣闻 · 换个角度看科技</small><strong>《地平线 6》里，去便利店集合</strong></span><span class="pick-arrow" aria-hidden="true">↗</span></a>
+      </nav>
     </div>
     <div class="hero-bottom">
-      <p>两则动态，一篇架构读本，一篇论文选读。</p>
+      <p>两则动态，一篇架构读本，一篇论文选读，再加一则科技趣闻。</p>
       <span class="issue-number">LESS NOISE. MORE SIGNAL.</span>
     </div>
   </div>
 </section>
 <div class="contents">
   <div class="shell contents-inner">
-    <p class="contents-title">IN THIS ISSUE</p>
-    <nav aria-label="本期目录">
+    <p class="contents-title">QUICK JUMP</p>
+    <nav aria-label="栏目快速跳转">
       <a href="#news"><span>01—02</span> 技术动态</a>
       <a href="#architecture"><span>03</span> 架构读本</a>
       <a href="#paper"><span>04</span> 论文选读</a>
+      <a href="#curiosity"><span>05</span> 科技趣闻</a>
     </nav>
     <p class="contents-note">为理解而读，为实践而选。</p>
   </div>
@@ -116,6 +121,10 @@
         <p class="section-kicker">UNDER THE HOOD / 技术读本</p>
         <h2 id="architecture-heading">把系统拆开，<br>让边界清楚。</h2>
         <p class="aside-note">读 OpenAI Agents API 架构文档。<br>理解一次调用背后的职责归属。</p>
+      <figure class="architecture-art">
+        <img src="assets/agent-system-v1.svg" width="520" height="390" alt="Agent 系统示意：应用服务连接运行循环，运行循环按需使用计算环境，事件与结果回传。">
+        <figcaption><span>FIG. 001 / A SYSTEM, NOT JUST A MODEL</span><span>原创示意</span></figcaption>
+      </figure>
       </aside>
       <article class="feature-article" aria-labelledby="architecture-title">
         <h3 id="architecture-title">一个 agent，三份职责</h3>
@@ -172,6 +181,27 @@
       </article>
     </div>
   </section>
+  <section class="shell curiosity-section" id="curiosity" aria-labelledby="curiosity-heading">
+    <div class="curiosity-panel">
+      <aside class="curiosity-aside">
+        <p class="section-kicker">SIDE QUEST / 科技趣闻</p>
+        <h2 id="curiosity-heading">科技圈，<br>也有好玩的。</h2>
+        <p>产品、人物、游戏与生活。<br>留一点版面，看看技术之外的热闹。</p>
+        <div class="curiosity-orbit" aria-hidden="true">↗ ◌</div>
+      </aside>
+      <article class="curiosity-article" aria-labelledby="curiosity-title">
+        <div class="article-topline"><span>05 / 游戏 × 生活</span><span class="article-tag">跨界趣事</span></div>
+        <h3 id="curiosity-title">《地平线 6》里，去便利店集合</h3>
+        <div class="article-body">
+          <p class="article-lead">这次赛车更新的主角之一，是便利店和蛋沙拉三明治。</p>
+          <p>Xbox 10 月 8 日宣布，《极限竞速：地平线 6》的 Horizon Meets 更新加入以日式 7-Eleven 为灵感的门店与主题车聚。玩家可以穿上店员制服，还能通过道具包把整家便利店放进 EventLab 自建赛道。</p>
+          <p>更有画面感的是秋季挑战：撞碎 20 个蛋沙拉三明治收集物，就能获得嘉年华播放列表完成进度及 Forza LINK 奖励。以上为官方公布的限时游戏内容，本刊未进游戏体验；具体活动开放情况以游戏内信息为准。</p>
+        </div>
+        <aside class="article-insight" aria-label="编辑随想"><strong>编辑随想 / 停车场也能是目的地</strong><p>开放世界的生活感，有时不靠更大的地图，而靠一个大家愿意停下来的角落。超跑负责抵达，便利店负责让人留下。</p></aside>
+        <div class="source-list"><span class="source-label">SOURCE</span><a href="https://news.xbox.com/en-us/2026/10/08/forza-horizon-6-7-eleven/" target="_blank" rel="noopener noreferrer">Xbox Wire 官方介绍 ↗</a><span>发布：<time datetime="2026-10-08">2026.10.08</time> · 核验：2026.10.11</span></div>
+      </article>
+    </div>
+  </section>
   <section class="shell endnote" aria-labelledby="endnote-title">
     <div><p class="section-kicker">BEFORE YOU GO / 收刊</p><h2 id="endnote-title">把一个问题，<br>带回自己的系统。</h2></div>
     <div><p>如果今天只能检查一件事：找出系统里最常见的一条工具调用路径，问问它的选择、执行和恢复分别由谁负责。模型能力在变化，清楚的职责和可验证的结果始终有用。</p><p>本期内容可通过<a href="2026-10-11-agent-systems.html">日期固定链接</a>再次阅读；更多期数将保留在<a href="archive.html">往期归档</a>。</p></div>
@@ -184,6 +214,7 @@
       <nav class="footer-links" aria-label="页脚导航"><a href="index.html">最新一期</a><a href="archive.html">往期归档</a><a href="#issue-title">回到顶部 ↑</a></nav>
       <p class="footer-small">ISSUE 001<br>2026.10.11 · UTC+8</p>
     </div>
+    <p class="edition-update">本期增补 · 2026.10.11（UTC+8）：新增科技趣闻与主题直达看点，保留原有四篇内容。</p>
     <p class="footer-disclosure">来源与方法：依据公开的一手资料整理，来源随文列出；“编辑判断”为分析意见。性能、价格与实验数据均归属于所引来源，本刊未进行独立基准测试。资料核对日：2026 年 10 月 11 日（UTC+8）。图示为原创概念表达，不代表官方产品界面。</p>
   </div>
 </footer>
