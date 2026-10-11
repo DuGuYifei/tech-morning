@@ -121,12 +121,12 @@
         <p class="section-kicker">UNDER THE HOOD / 技术读本</p>
         <h2 id="architecture-heading">把系统拆开，<br>让边界清楚。</h2>
         <p class="aside-note">读 OpenAI Agents API 架构文档。<br>理解一次调用背后的职责归属。</p>
-      <figure class="editor-figure" style="margin:26px 0;"><a href="assets/agent-responsibility-map-v2.png" target="_blank" rel="noopener noreferrer" aria-label="查看完整图解：Agent职责图：应用服务负责产品与任务入口，运行层负责模型和工具循环与会话，可选执行环境提供计算和文件。"><img src="assets/agent-responsibility-map-v2.png" width="1600" height="1648" alt="Agent职责图：应用服务负责产品与任务入口，运行层负责模型和工具循环与会话，可选执行环境提供计算和文件。" loading="lazy" style="display:block;width:100%;height:auto;border-radius:10px;"></a><figcaption style="font-size:14px;line-height:1.8;margin-top:12px;">图解：依据官方架构文档整理三类职责；组件关系示意，不是严格执行顺序。 <a href="https://developers.openai.com/api/docs/guides/agents-api/architecture" target="_blank" rel="noopener noreferrer" style="text-decoration:underline;">原始出处 ↗</a> · 图示核验：2026.10.12</figcaption></figure>
+      
       </aside>
       <article class="feature-article" aria-labelledby="architecture-title">
         <h3 id="architecture-title">一个 agent，三份职责</h3>
         <div class="article-body">
-          <p class="article-lead">Agent 的推理循环、执行环境和产品服务，是三件互相关联、却不该混为一谈的事。</p>
+          <p class="article-lead">Agent 的推理循环、执行环境和产品服务，是三件互相关联、却不该混为一谈的事。</p><figure class="editor-figure" style="margin:26px 0;"><a href="assets/agent-responsibility-map-v2.png" target="_blank" rel="noopener noreferrer" aria-label="查看完整图解：Agent职责图：应用服务负责产品与任务入口，运行层负责模型和工具循环与会话，可选执行环境提供计算和文件。"><img src="assets/agent-responsibility-map-v2.png" width="1600" height="1648" alt="Agent职责图：应用服务负责产品与任务入口，运行层负责模型和工具循环与会话，可选执行环境提供计算和文件。" loading="lazy" style="display:block;width:100%;height:auto;border-radius:10px;"></a><figcaption style="font-size:14px;line-height:1.8;margin-top:12px;">图解：依据官方架构文档整理三类职责；组件关系示意，不是严格执行顺序。 <a href="https://developers.openai.com/api/docs/guides/agents-api/architecture" target="_blank" rel="noopener noreferrer" style="text-decoration:underline;">原始出处 ↗</a> · 图示核验：2026.10.12</figcaption></figure>
           <p>OpenAI Agents API 的架构文档把它们拆开：harness 负责模型与工具循环、会话；environment 提供计算与文件；application server 负责产品集成、提交任务、处理事件及函数工具。</p>
           <figure class="flow-diagram">
             <div class="flow-row" aria-label="应用服务连接 Agent 运行层；运行层按需使用执行环境">
