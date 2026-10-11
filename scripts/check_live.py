@@ -4,7 +4,7 @@ from urllib.request import Request, urlopen
 from hashlib import sha256
 import sys
 root=Path(__file__).resolve().parents[1]
-base=(sys.argv[1] if len(sys.argv)>1 else 'https://about.liuyifei.tech/tech-morning/').rstrip('/')+'/'
+base=(sys.argv[1] if len(sys.argv)>1 else 'https://news.liuyifei.tech/').rstrip('/')+'/'
 paths=[p for p in root.glob('*.html') if not p.name.startswith('qa-')]+list((root/'assets').glob('*'))+[root/'issues.json']
 failed=[]
 for p in paths:

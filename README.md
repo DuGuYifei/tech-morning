@@ -1,6 +1,6 @@
 # 技术晨刊
 
-面向构建者的中文 AI、技术与科技趣闻日刊。公开静态站点：https://about.liuyifei.tech/tech-morning/
+面向构建者的中文 AI、技术与科技趣闻日刊。公开静态站点：https://news.liuyifei.tech/
 
 ## 文件约定
 

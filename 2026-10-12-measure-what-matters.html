@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#101f27">
+  <meta name="description" content="技术晨刊第002期：快一点，也要看得准。Ultrafast、ReviewBench、GitSkills论文选读与IKEA×Xbox家具趣闻。">
+  <title>快一点，也要看得准 · 技术晨刊 · 2026.10.12</title>
+  <link rel="canonical" href="https://news.liuyifei.tech/2026-10-12-measure-what-matters.html">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="stylesheet" href="assets/style-v1.2.css">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:title" content="快一点，也要看得准 · 技术晨刊">
+  <meta property="og:description" content="2026.10.12 · Ultrafast / ReviewBench / GitSkills / IKEA × Xbox">
+  <meta property="og:url" content="https://news.liuyifei.tech/2026-10-12-measure-what-matters.html">
+</head>
+<body>
+<a class="skip-link" href="#main">跳至正文</a>
+<header class="site-header">
+  <div class="shell topbar">
+    <a class="brand" href="index.html" aria-label="技术晨刊首页">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span><span class="brand-name">技术晨刊</span><span class="brand-sub">THE TECH MORNING</span></span>
+    </a>
+    <nav class="header-nav" aria-label="主导航">
+      <a href="index.html">最新一期</a>
+      <a href="archive.html">往期归档 <span aria-hidden="true">↗</span></a>
+      <span class="header-date">2026.10.12<br>MONDAY EDITION</span>
+    </nav>
+  </div>
+</header>
+<section class="hero" aria-labelledby="issue-title">
+  <div class="shell">
+    <div class="edition-line">
+      <div class="edition-label"><span class="status-dot" aria-hidden="true"></span><span class="eyebrow">Issue 002 / The Evidence Edition</span></div>
+      <time class="eyebrow" datetime="2026-10-12">2026 年 10 月 12 日 · 星期一</time>
+    </div>
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <p class="hero-kicker">本期主题 / 速度、质量与证据</p>
+        <h1 id="issue-title">快一点，<br><span>也要看得准。</span></h1>
+        <p class="hero-deck">更快的响应，更安静的代码审查。<br>今天，把速度、质量和可复用性放回可验证的尺度。</p>
+        <a class="hero-cta" href="#news">开始阅读 <span class="arrow" aria-hidden="true">↓</span></a>
+      </div>
+      <nav class="issue-picks" aria-labelledby="picks-heading"><div class="picks-heading"><h2 id="picks-heading">本期看点</h2><span>04 STORIES / 任选一篇开始 ↘</span></div><a class="pick" href="#ultrafast"><span class="pick-number">01</span><span class="pick-copy"><small>技术动态 · OPENAI</small><strong>Ultrafast：加速不只看 token</strong></span><span class="pick-arrow" aria-hidden="true">↗</span></a><a class="pick" href="#reviewbench"><span class="pick-number">02</span><span class="pick-copy"><small>开发工具 · GITHUB</small><strong>ReviewBench：好审查，少噪声</strong></span><span class="pick-arrow" aria-hidden="true">↗</span></a><a class="pick" href="#paper"><span class="pick-number">03</span><span class="pick-copy"><small>论文选读 · GITSKILLS</small><strong>技能文件，也需要软件考古</strong></span><span class="pick-arrow" aria-hidden="true">↗</span></a><a class="pick" href="#curiosity"><span class="pick-number">04</span><span class="pick-copy"><small>科技趣闻 · IKEA × XBOX</small><strong>把摇杆放大，真的能坐上去</strong></span><span class="pick-arrow" aria-hidden="true">↗</span></a></nav>
+    </div>
+    <div class="hero-bottom">
+      <p>两则近期动态，一篇论文选读，再加一则科技趣闻。</p>
+      <span class="issue-number">LESS NOISE. MORE SIGNAL.</span>
+    </div>
+  </div>
+</section>
+<div class="contents">
+  <div class="shell contents-inner">
+    <p class="contents-title">QUICK JUMP</p>
+    <nav aria-label="栏目快速跳转">
+      <a href="#news"><span>01—02</span> 技术动态</a>
+      
+      <a href="#paper"><span>03</span> 论文选读</a>
+      <a href="#curiosity"><span>04</span> 科技趣闻</a>
+    </nav>
+    <p class="contents-note">为理解而读，为实践而选。</p>
+  </div>
+</div>
+<main id="main">
+  <section class="shell editor-note" aria-labelledby="editor-title"><div><p class="section-kicker">EDITOR’S NOTE / 编者的话</p><h2 id="editor-title">别只看更快，<br>也问如何证明。</h2></div><p class="note-copy">延迟更低，不等于整个任务同比提速；审查意见更多，不等于代码更可靠；技能文件更多，也不等于能力更强。本期把三个容易混淆的数字拆开看。所选动态发布于10月上旬，论文为历史选读，不冒充过去24小时快讯。</p></section>
+<section class="shell news-section" id="news" aria-labelledby="news-heading"><div class="section-header"><div class="section-heading"><p class="section-kicker">THE SIGNAL / 近期动态</p><h2 id="news-heading">速度与质量，两把尺子</h2></div><p class="section-note">先问指标衡量什么。<br>再把变化带回工作流。</p></div><div class="news-grid">
+<article class="news-story" id="ultrafast" aria-labelledby="news-one-title"><div class="article-topline"><span>01 / OPENAI</span><span class="article-tag">延迟优化</span></div><h3 id="news-one-title">Ultrafast：<br>加速不只看 token</h3><div class="article-body"><p class="article-lead">生成更快之后，网络和工具可能成为下一处瓶颈。</p><p>OpenAI 的10月8日更新日志宣布，GPT-6.1 Sol 在 Responses API 支持 Ultrafast，以缩短生成 token 之间的时间。通过 service_tier="ultrafast" 启用，所有 API 用户均可使用，但该档位有独立限流，成本也更高。</p><p>官方文档建议高频调用工具的应用采用持久 WebSocket，避免网络开销抵消延迟收益。这一建议值得与模型加速一起看：用户等待的是任务完成，而不仅是文字出现。</p></div><aside class="article-insight" aria-label="编辑判断"><strong>编辑判断 / 看整条链路</strong><p>比较同一组任务的端到端耗时、成功率与成本，并拆分模型、网络和工具时间。这里没有独立实测，也不把生成速度等同于任务提速。</p></aside><div class="source-list"><span class="source-label">SOURCES</span><a href="https://developers.openai.com/api/docs/changelog" target="_blank" rel="noopener noreferrer">官方更新日志 ↗</a><a href="https://developers.openai.com/api/docs/guides/ultrafast-mode" target="_blank" rel="noopener noreferrer">Ultrafast 文档 ↗</a><span>发布：<time datetime="2026-10-08">2026.10.08</time> · 文档核验：2026.10.12</span></div></article>
+<article class="news-story" id="reviewbench" aria-labelledby="news-two-title"><div class="article-topline"><span>02 / GITHUB</span><span class="article-tag">代码审查</span></div><h3 id="news-two-title">ReviewBench：<br>好审查，少噪声</h3><div class="article-body"><p class="article-lead">一条真正有用的提醒，比十条模糊建议更值得看。</p><p>GitHub 于10月5日发布 ReviewBench，收录187个公开开源仓库中的219个 PR，覆盖19种语言。样本设计参考了1.039亿个 GitHub PR 的分布；后一个数字是分布分析规模，不是实际测试集大小。</p><p>参考问题集结合人工审查、模型和静态分析，再按精确率、召回率、严重程度等维度评价。这是 GitHub 提出的审查基准，并非对任何产品效果的保证。</p></div><aside class="article-insight" aria-label="编辑判断"><strong>编辑判断 / 给噪声记账</strong><p>选 AI reviewer 时，分别看漏掉多少真问题、制造多少误报，再用自家历史 PR 验证。审查员花在筛选建议上的时间，也应算入成本。</p></aside><div class="source-list"><span class="source-label">SOURCE</span><a href="https://github.blog/ai-and-ml/github-copilot/reviewbench-an-open-benchmark-for-ai-code-review/" target="_blank" rel="noopener noreferrer">GitHub 官方介绍 ↗</a><span>发布：<time datetime="2026-10-05">2026.10.05</time> · 核验：2026.10.12</span></div></article>
+</div></section>
+<section class="shell paper-section" id="paper" aria-labelledby="paper-heading"><div class="section-header"><div class="section-heading"><p class="section-kicker">THE READING ROOM / 论文选读</p><h2 id="paper-heading">技能文件，也需要软件考古</h2></div><p class="section-note">数据集描述生态。<br>不直接证明技能有效。</p></div><div class="paper-panel"><aside class="paper-aside"><span class="paper-label">PAPER / 03</span><div class="paper-glyph" aria-hidden="true"></div><p>文件数量之外，<br>看来源、重复与维护责任。</p><p class="paper-citation">GITSKILLS<br>arXiv:2608.10906 · v3<br>2026.09.11</p></aside><article class="paper-article" aria-labelledby="paper-title"><h3 id="paper-title">GitSkills：<br>复制容易，维护更难</h3><div class="article-body"><p class="article-lead">一个技能文件被复制一千次，并不意味着多出一千种能力。</p><p>作者在2026年7月从282,200个公开 GitHub 仓库收集约380万条技能文件记录，按内容哈希归并后剩约188万种不同内容。论文报告50.5%的文件是逐字节重复副本。</p><figure class="flow-diagram"><img src="assets/skills-evidence-v1.svg" width="720" height="270" alt="概念图：文件记录经过内容去重，再接受独立的真实任务验证；文件数量不能直接代表能力。"><figcaption>原创概念图：去重与有效性验证是两道不同的门槛；右侧为编辑提出的实践步骤，不是论文实验结果。</figcaption></figure><h4>研究给出了什么，也没给出什么</h4><p>这是一篇数据集论文，保留文件、路径、内容与部分提交历史，便于研究技能如何传播和演化。它没有证明某种技能写法能提升 Agent 成功率。样本受 GitHub 搜索范围限制，还保留早于技能格式出现的同名文件，不能把总数当成有效技能数量。</p><h4>编辑判断 / 引入技能，也要接住维护</h4><p>引入外部技能库前，记录来源与版本，检查重复和过时指令，再用自己的任务验证。复制之后谁负责跟进上游更新，应当和“怎么安装”一样清楚。</p></div><p class="paper-caution">历史选读，非今日新发。初版：2026.08.11；本期依据 v3：2026.09.11；全文核验：2026.10.12（UTC+8）。</p><div class="source-list"><span class="source-label">SOURCES</span><a href="https://arxiv.org/abs/2608.10906" target="_blank" rel="noopener noreferrer">论文版本记录 ↗</a><a href="https://arxiv.org/html/2608.10906v3" target="_blank" rel="noopener noreferrer">v3 全文 ↗</a></div></article></div></section>
+<section class="shell curiosity-section" id="curiosity" aria-labelledby="curiosity-heading"><div class="curiosity-panel"><aside class="curiosity-aside"><p class="section-kicker">SIDE QUEST / 科技趣闻</p><h2 id="curiosity-heading">从指尖，<br>来到客厅。</h2><p>游戏硬件的熟悉形状，<br>换一种尺度进入生活。</p><div class="curiosity-orbit" aria-hidden="true">↗ ◌</div></aside><article class="curiosity-article" aria-labelledby="curiosity-title"><div class="article-topline"><span>04 / IKEA × XBOX</span><span class="article-tag">设计跨界</span></div><h3 id="curiosity-title">把摇杆放大，真的能坐上去</h3><div class="article-body"><p class="article-lead">这次联名，把玩家熟悉的操作部件变成了家具。</p><p>Xbox Wire 10月1日介绍 IKEA 与 Xbox 共同设计的九件套 YXSTABY 系列。方向键成为靠垫和装饰托盘，手柄有了镜面展示盒；其中最有趣的是摇杆凳。</p><p>官方称，这把凳子直接依据 Xbox 无线手柄的原始3D设计文件开发，连防滑纹理也转化为座面细节。公告称10月1日起进入 IKEA 门店，线上销售安排在年内；各市场供应可能不同，不能据此判断中国区已开售。</p></div><aside class="article-insight" aria-label="编辑观察"><strong>编辑观察 / 熟悉感，也能换个用途</strong><p>把按钮放大不是全部，给它找到能融入生活的用途才有意思。至于坐感、耐用性与性价比，本刊没有体验或独立验证。</p></aside><div class="source-list"><span class="source-label">SOURCE</span><a href="https://news.xbox.com/en-us/2026/10/01/ikea-xbox-gaming-collection-yxstaby/" target="_blank" rel="noopener noreferrer">Xbox Wire 官方介绍 ↗</a><span>发布：<time datetime="2026-10-01">2026.10.01</time> · 核验：2026.10.12</span></div></article></div></section>
+  <section class="shell endnote" aria-labelledby="endnote-title">
+    <div><p class="section-kicker">BEFORE YOU GO / 收刊</p><h2 id="endnote-title">今天，换一把<br>更准确的尺子。</h2></div>
+    <div><p>如果今天只做一件事：选一个正在追踪的指标，写清它实际测量什么、没有测量什么。更快、更多、更大，都需要和真实任务的结果放在一起看。</p><p>本期内容可通过<a href="2026-10-12-measure-what-matters.html">日期固定链接</a>再次阅读；更多期数将保留在<a href="archive.html">往期归档</a>。</p></div>
+  </section>
+</main>
+<footer class="site-footer">
+  <div class="shell">
+    <div class="footer-inner">
+      <a href="index.html" class="footer-brand">技术晨刊<span>A CLEARER VIEW OF WHAT’S NEXT.</span></a>
+      <nav class="footer-links" aria-label="页脚导航"><a href="index.html">最新一期</a><a href="archive.html">往期归档</a><a href="#issue-title">回到顶部 ↑</a></nav>
+      <p class="footer-small">ISSUE 002<br>2026.10.12 · UTC+8</p>
+    </div>
+    <p class="footer-disclosure">来源与方法：依据公开的一手资料整理，来源随文列出；“编辑判断”为分析意见。性能、价格与实验数据均归属于所引来源，本刊未进行独立基准测试。资料核对日：2026 年 10 月 12 日（UTC+8）。图示为原创概念表达，不代表官方产品界面。</p>
+  </div>
+</footer>
+</body>
+</html>
