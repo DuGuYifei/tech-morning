@@ -1,5 +1,14 @@
 [
   {
+    "date": "2026-10-13",
+    "title": "让变化有据可查",
+    "path": "2026-10-13-trace-the-change.html",
+    "issue": "003",
+    "theme": "身份、工具与长期记忆",
+    "summary": "GitHub推送归属 · JetBrains Copilot · StateMem · 科技趣闻：Google Playground",
+    "updated": "2026-10-13"
+  },
+  {
     "date": "2026-10-12",
     "title": "快一点，也要看得准",
     "path": "2026-10-12-measure-what-matters.html",
