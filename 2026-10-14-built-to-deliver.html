@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#101f27">
+  <meta name="description" content="技术晨刊第004期：让能力经得起交付。Gemini 4 Argon · TanStack Start 1.0 · 本地Agent验收实验 · Michelangelus字体。">
+  <title>让能力经得起交付 · 技术晨刊 · 2026.10.14</title>
+  <link rel="canonical" href="https://news.liuyifei.tech/2026-10-14-built-to-deliver.html">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="stylesheet" href="assets/style-v1.2.css">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:title" content="让能力经得起交付 · 技术晨刊">
+  <meta property="og:description" content="2026.10.14 · Gemini 4 Argon · TanStack Start 1.0 · 本地Agent验收实验 · Michelangelus字体">
+  <meta property="og:url" content="https://news.liuyifei.tech/2026-10-14-built-to-deliver.html">
+</head>
+<body>
+<a class="skip-link" href="#main">跳至正文</a>
+<header class="site-header">
+  <div class="shell topbar">
+    <a class="brand" href="index.html" aria-label="技术晨刊首页">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span><span class="brand-name">技术晨刊</span><span class="brand-sub">THE TECH MORNING</span></span>
+    </a>
+    <nav class="header-nav" aria-label="主导航">
+      <a href="index.html">最新一期</a>
+      <a href="archive.html">往期归档 <span aria-hidden="true">↗</span></a>
+      <span class="header-date">2026.10.14<br>WEDNESDAY EDITION</span>
+    </nav>
+  </div>
+</header>
+<section class="hero" aria-labelledby="issue-title">
+  <div class="shell">
+    <div class="edition-line">
+      <div class="edition-label"><span class="status-dot" aria-hidden="true"></span><span class="eyebrow">Issue 004 / The Delivery Edition</span></div>
+      <time class="eyebrow" datetime="2026-10-14">2026 年 10 月 14 日 · 星期三</time>
+    </div>
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <p class="hero-kicker">本期主题 / 长任务、全栈与可验证产物</p>
+        <h1 id="issue-title">让能力，<br><span>经得起交付。</span></h1>
+        <p class="hero-deck">长输出需要预算，全栈应用需要边界，Agent 产物需要验收。<br>今天，从新能力出发，把注意力放到交付的最后一公里。</p>
+        <a class="hero-cta" href="#news">开始阅读 <span class="arrow" aria-hidden="true">↓</span></a>
+      </div>
+<nav class="issue-picks" aria-labelledby="picks-heading"><div class="picks-heading"><h2 id="picks-heading">本期看点</h2><span>04 STORIES / 任选一篇开始 ↘</span></div><a class="pick" href="#argon"><span class="pick-number">01</span><span class="pick-copy"><small>模型动态 · GOOGLE</small><strong>Argon开放了，长任务预算怎么设？</strong></span><span class="pick-arrow" aria-hidden="true">↗</span></a><a class="pick" href="#start"><span class="pick-number">02</span><span class="pick-copy"><small>全栈开发 · TANSTACK</small><strong>Start 1.0稳定了，边界仍要自己画</strong></span><span class="pick-arrow" aria-hidden="true">↗</span></a><a class="pick" href="#paper"><span class="pick-number">03</span><span class="pick-copy"><small>论文选读 · LOCAL AGENTS</small><strong>让Agent修复，还要独立验收</strong></span><span class="pick-arrow" aria-hidden="true">↗</span></a><a class="pick" href="#curiosity"><span class="pick-number">04</span><span class="pick-copy"><small>科技趣闻 · TYPOGRAPHY</small><strong>一个小写g，打磨了一周</strong></span><span class="pick-arrow" aria-hidden="true">↗</span></a></nav>
+    </div>
+    <div class="hero-bottom">
+      <p>两则近期动态，一篇论文选读，再加一则科技趣闻。</p>
+      <span class="issue-number">LESS NOISE. MORE SIGNAL.</span>
+    </div>
+  </div>
+</section>
+<div class="contents">
+  <div class="shell contents-inner">
+    <p class="contents-title">QUICK JUMP</p>
+    <nav aria-label="栏目快速跳转">
+      <a href="#news"><span>01—02</span> 技术动态</a>
+      
+      <a href="#paper"><span>03</span> 论文选读</a>
+      <a href="#curiosity"><span>04</span> 科技趣闻</a>
+    </nav>
+    <p class="contents-note">为理解而读，为实践而选。</p>
+  </div>
+</div>
+<main id="main"><section class="shell editor-note" aria-labelledby="editor-title"><div><p class="section-kicker">EDITOR’S NOTE / 编者的话</p><h2 id="editor-title">能生成，<br>还要能交付。</h2></div><p class="note-copy">模型向更多开发者开放、全栈框架进入稳定版，都让构建变得更容易。但长任务的总预算、代码运行的位置和最终产物是否正确，仍需要明确设计。本期读两则10月13日动态、一篇近期实验论文，最后看看现代字体如何从历史手稿中长出来。</p></section><section class="shell news-section" id="news" aria-labelledby="news-heading"><div class="section-header"><div class="section-heading"><p class="section-kicker">THE SIGNAL / 近期动态</p><h2 id="news-heading">能力入口，工程边界</h2></div><p class="section-note">开始用之前，<br>先看清约束。</p></div><div class="news-grid"><article class="news-story" id="argon" aria-labelledby="news-one-title"><div class="article-topline"><span>01 / GEMINI 4 ARGON</span><span class="article-tag">扩大可用</span></div><h3 id="news-one-title">Argon开放了，<br>长任务预算怎么设？</h3><div class="article-body"><p class="article-lead">百万级窗口，是输入、思考和输出的共同预算。</p><figure class="editor-figure" style="margin:26px 0"><a href="assets/argon-budget-v1.png" target="_blank" rel="noopener noreferrer" aria-label="查看完整图解"><img src="assets/argon-budget-v1.png" width="1600" height="1760" alt="Gemini 4 Argon的输入、思考与输出共享1048576 token总窗口，三张卡片不代表实际占比。" style="display:block;width:100%;height:auto;border-radius:10px"></a><figcaption style="font-size:14px;line-height:1.8;margin-top:12px">依据官方API文档绘制的编辑示意。窗口总量与输出上限是不同约束，图中没有按比例表达消耗。 <a href="https://ai.google.dev/gemini-api/docs/latest-model?hl=en">原始出处 ↗</a> · 核验：2026.10.14</figcaption></figure><p>Google 10月13日扩大 Gemini 4 Argon 的公开可用范围，开发者可在 Gemini API 付费层接入。它并非当日首次亮相：9月30日首发阶段主要面向受信任的网络防御伙伴。本期聚焦 API，不把不同消费产品的订阅权限混为一谈。</p><p>官方文档规定，输入、思考与输出共享1,048,576 token窗口。若要生成超过64K的长响应，需要设置更高的 max_output_tokens 并使用后台执行或分段续接；只打开后台执行、没有提高输出上限，仍会停在64K。完成后还要拼接各段 model_output。</p><p>迁移另有两个易漏点：显式上下文缓存暂不支持，temperature、top_p、top_k会被忽略。Google将其定位于复杂编码和多步骤Agent；这是厂商能力描述，本刊没有独立性能实测。</p></div><aside class="article-insight" aria-label="编辑判断"><strong>编辑判断 / 先算完整任务</strong><p>先用已有回归任务测质量、总token、超时和完整结果拼接，再逐步增加流量。更长输出不是可靠性的保证，思考也会占用输出预算，不能只按最终可见文字估算开销。</p></aside><div class="source-list"><span class="source-label">SOURCES</span><a href="https://blog.google/intl/en-in/products/introducing-gemini-4-argon/" target="_blank" rel="noopener noreferrer">Google开放公告 ↗</a><a href="https://ai.google.dev/gemini-api/docs/latest-model?hl=en" target="_blank" rel="noopener noreferrer">API迁移文档 ↗</a><a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon/" target="_blank" rel="noopener noreferrer">首次公告 ↗</a><span>开放公告：2026.10.13；文档更新：2026.10.13 · 核验：2026.10.14</span></div></article><article class="news-story" id="start" aria-labelledby="news-two-title"><div class="article-topline"><span>02 / TANSTACK START</span><span class="article-tag">全栈框架</span></div><h3 id="news-two-title">Start 1.0稳定了，<br>边界仍要自己画</h3><div class="article-body"><p class="article-lead">类型可以约束接口，却不会替你判断产品是否做对。</p><p>Tanner Linsley 10月13日宣布 TanStack Start 1.0 稳定版，结束RC阶段。框架提供服务端渲染、客户端渲染、类型化 server functions，以及贯穿客户端和服务端的中间件。</p><p>Netlify同日宣布部署支持，SSR、server routes、server functions和middleware由Netlify Functions承载。新建Agent Runners项目默认使用Start 1.0，除非另行指定框架；这不代表现有项目会自动迁移。</p><p>维护者认为，显式API和类型约束有助于Agent发现改动后的不一致；也提醒类型无法判断产品意图。1.0稳定承诺不等于所有旧应用都能无成本迁移。</p></div><aside class="article-insight" aria-label="编辑判断"><strong>编辑判断 / 先做一个纵向切片</strong><p>挑一个同时需要交互和服务端数据的页面，验证类型检查、鉴权、数据运行位置与部署适配。把浏览器与服务端的信任边界写清楚，再谈扩大迁移；不要把类型安全当成运行时安全审计。</p></aside><div class="source-list"><span class="source-label">SOURCES</span><a href="https://tanstack.com/blog/tanstack-start-1-0" target="_blank" rel="noopener noreferrer">TanStack原始公告 ↗</a><a href="https://www.netlify.com/changelog/2026-10-13-tanstack-start-1-0/" target="_blank" rel="noopener noreferrer">Netlify支持公告 ↗</a><a href="https://docs.netlify.com/build/frameworks/framework-setup-guides/tanstack-start/" target="_blank" rel="noopener noreferrer">部署说明 ↗</a><span>公告：2026.10.13；部署文档按核验日读取 · 核验：2026.10.14</span></div></article></div></section><section class="shell paper-section" id="paper" aria-labelledby="paper-heading"><div class="section-header"><div class="section-heading"><p class="section-kicker">THE READING ROOM / 论文选读</p><h2 id="paper-heading">验收的是产物，不是语气</h2></div><p class="section-note">工具反馈帮助修复，<br>独立检查定义完成。</p></div><div class="paper-panel"><aside class="paper-aside"><span class="paper-label">PAPER / 03</span><div class="paper-glyph" aria-hidden="true"></div><p>生成之后，<br>留出检查的那一步。</p><p class="paper-citation">LOCAL AGENTS<br>arXiv:2610.11482 · v1<br>2026.10.08</p></aside><article class="paper-article" aria-labelledby="paper-title"><h3 id="paper-title">让Agent修复，<br>还要独立验收</h3><div class="article-body"><p class="article-lead">近期论文选读：给本地模型一个可检查、可修复的工作区，会发生什么？</p><figure class="editor-figure" style="margin:26px 0"><a href="assets/local-agent-check-v1.png" target="_blank" rel="noopener noreferrer" aria-label="查看完整图解"><img src="assets/local-agent-check-v1.png" width="1600" height="1840" alt="本地Agent数据工程实验：固定任务及离线数据，工具反馈中反复修复，提交后由隐藏的确定性检查器独立评分。" style="display:block;width:100%;height:auto;border-radius:10px"></a><figcaption style="font-size:14px;line-height:1.8;margin-top:12px">论文方法的编辑简图。Agent可自行检查和修复，但最终隐藏评分在提交后进行；本刊未复跑实验。 <a href="https://arxiv.org/html/2610.11482v1">原始出处 ↗</a> · 核验：2026.10.14</figcaption></figure><p>研究在单张RTX 4090上，以15项交通数据工程任务测试10种本地Qwen配置。一次生成与工具闭环两种模式各重复5次，共1,500次。闭环允许读写文件、执行命令、检查并修复产物；提交后才由隐藏的确定性检查器评分。</p><h4>作者实验 / 产物通过率</h4><p>Qwen 3.5 9B Q4从一次生成的17.3%升至闭环的69.3%，增加52个百分点；Qwen 3.6 27B Q4在闭环中达到85.3%。这是特定任务集上的作者实验，不是通用Agent成功率，本刊未下载复现包或复跑。</p><h4>局限与适用场景</h4><p>固定离线数据、单一模型家族限制了外推；工具、反馈和多轮上下文共同变化，不能把增益归因于某个组件。编辑判断：适合借鉴到可自动验收的数据清洗与转换，先定义字段、数值和文件约束，再允许修复，并保留提交后的独立检查。</p></div><p class="paper-caution">近期选读，非今日新发。论文：Evaluating Local Language Model Agents for Reproducible Data Engineering: An Empirical Software Engineering Study of Mobility Workflows。初版及所读v1：2026.10.08；预印本结果。</p><div class="source-list"><span class="source-label">SOURCES</span><a href="https://arxiv.org/abs/2610.11482" target="_blank" rel="noopener noreferrer">版本与摘要 ↗</a><a href="https://arxiv.org/html/2610.11482v1" target="_blank" rel="noopener noreferrer">v1全文与实验表 ↗</a><span>原始版本：2026.10.08 · 核验：2026.10.14</span></div></article></div></section><section class="shell curiosity-section" id="curiosity" aria-labelledby="curiosity-heading"><div class="curiosity-panel"><aside class="curiosity-aside"><p class="section-kicker">SIDE QUEST / 科技趣闻</p><h2 id="curiosity-heading">一笔一画，<br>也是工程。</h2><p>历史给出灵感，<br>现代阅读决定取舍。</p><div class="curiosity-orbit" aria-hidden="true">↗ ◌</div></aside><article class="curiosity-article" aria-labelledby="curiosity-title"><div class="article-topline"><span>04 / MICHELANGELUS</span><span class="article-tag">字体设计</span></div><h3 id="curiosity-title">一个小写g，<br>打磨了一周</h3><div class="article-body"><p class="article-lead">把米开朗基罗的视觉语言带进文档，靠的不是把手迹直接扫描成字体。</p><p>微软10月8日介绍新字体Michelangelus。Studiogusto从手稿、签名和石刻中提炼字形，再为现代阅读重新设计；设计师为一个小写g花了一周。四种样式合计超过2,000个字形，也补上历史材料里没有的现代字符。</p><p>字体现可下载，微软计划年底分发到Word、PowerPoint和Excel，不能写成现在已全面内置。它是现代字体设计，不是完整手迹复刻，也不是中文字体；使用和再分发仍需查看对应许可。</p></div><aside class="article-insight" aria-label="编辑判断"><strong>编辑观察 / 把灵感变成系统</strong><p>一个字符好看还不够，还要能和其他字符、数字与标点一起工作。字体设计的有趣之处，恰在于把历史中的个性转成可重复使用的规则。本期未复制官方字形或宣传图片。</p></aside><div class="source-list"><span class="source-label">SOURCES</span><a href="https://microsoft.design/articles/designing-michelangelus/" target="_blank" rel="noopener noreferrer">Microsoft Design设计记录 ↗</a><a href="https://learn.microsoft.com/en-us/typography/font-list/michelangelus" target="_blank" rel="noopener noreferrer">字体规格与下载入口 ↗</a><span>设计公告：2026.10.08 · 核验：2026.10.14</span></div></article></div></section><section class="shell endnote" aria-labelledby="endnote-title"><div><p class="section-kicker">BEFORE YOU GO / 收刊</p><h2 id="endnote-title">把完成，<br>写成可检查的条件。</h2></div><div><p>今天可以为一个常用Agent任务补一条验收规则：结果必须包含哪些字段、满足什么约束、由哪一步独立检查。先让“完成”有定义，再让系统跑得更远。</p><p>本期可通过<a href="2026-10-14-built-to-deliver.html">日期固定链接</a>再次阅读；历史内容保留在<a href="archive.html">往期归档</a>。</p></div></section></main>
+<footer class="site-footer">
+  <div class="shell">
+    <div class="footer-inner">
+      <a href="index.html" class="footer-brand">技术晨刊<span>A CLEARER VIEW OF WHAT’S NEXT.</span></a>
+      <nav class="footer-links" aria-label="页脚导航"><a href="index.html">最新一期</a><a href="archive.html">往期归档</a><a href="#issue-title">回到顶部 ↑</a></nav>
+      <p class="footer-small">ISSUE 004<br>2026.10.14 · UTC+8</p>
+    </div>
+    <p class="footer-disclosure">来源与方法：依据公开的一手资料整理，来源随文列出；“编辑判断”为分析意见。性能、价格与实验数据均归属于所引来源，本刊未进行独立基准测试。资料核对日：2026 年 10 月 14 日（UTC+8）。图示为原创概念表达，不代表官方产品界面。</p>
+  </div>
+</footer>
+</body>
+</html>

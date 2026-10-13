@@ -1,5 +1,14 @@
 [
   {
+    "date": "2026-10-14",
+    "title": "让能力经得起交付",
+    "path": "2026-10-14-built-to-deliver.html",
+    "issue": "004",
+    "theme": "长任务、全栈与可验证产物",
+    "summary": "Gemini 4 Argon · TanStack Start 1.0 · 本地Agent验收实验 · Michelangelus字体",
+    "updated": "2026-10-14"
+  },
+  {
     "date": "2026-10-13",
     "title": "让变化有据可查",
     "path": "2026-10-13-trace-the-change.html",
