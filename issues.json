@@ -1,5 +1,14 @@
 [
   {
+    "date": "2026-10-15",
+    "title": "让执行少一点意外",
+    "path": "2026-10-15-control-the-run.html",
+    "issue": "005",
+    "theme": "模型编排、依赖锁定与隐藏验收",
+    "summary": "HydraFusion Max · Actions锁文件 · AgentSWE · Colorbound文化游戏",
+    "updated": "2026-10-15"
+  },
+  {
     "date": "2026-10-14",
     "title": "让能力经得起交付",
     "path": "2026-10-14-built-to-deliver.html",
