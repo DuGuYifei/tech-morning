@@ -5,16 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light">
   <meta name="theme-color" content="#101f27">
-  <meta name="description" content="技术晨刊008：Claude追溯曲线参数种子 · DuET读懂无声的节拍 · 和真企鹅相邻游泳的机器人">
-  <title>25年的谜底，藏在时间戳里 · 技术晨刊 · 2026.10.18</title>
-  <link rel="canonical" href="https://news.liuyifei.tech/2026-10-18-seeds-and-silence.html">
+  <meta name="description" content="技术晨刊009：AI压缩量子电路 · Scion重做版本控制 · 星战与漫威在积木里相遇">
+  <title>省下量子门，接住代码洪流 · 技术晨刊 · 2026.10.19</title>
+  <link rel="canonical" href="https://news.liuyifei.tech/2026-10-19-gates-and-merges.html">
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
   <link rel="stylesheet" href="assets/style-v1.2.css">
   <meta property="og:type" content="article">
   <meta property="og:locale" content="zh_CN">
-  <meta property="og:title" content="25年的谜底，藏在时间戳里 · 技术晨刊">
-  <meta property="og:description" content="技术晨刊008：Claude追溯曲线参数种子 · DuET读懂无声的节拍 · 和真企鹅相邻游泳的机器人">
-  <meta property="og:url" content="https://news.liuyifei.tech/2026-10-18-seeds-and-silence.html">
+  <meta property="og:title" content="省下量子门，接住代码洪流 · 技术晨刊">
+  <meta property="og:description" content="技术晨刊009：AI压缩量子电路 · Scion重做版本控制 · 星战与漫威在积木里相遇">
+  <meta property="og:url" content="https://news.liuyifei.tech/2026-10-19-gates-and-merges.html">
 <link rel="stylesheet" href="assets/edition-v1.css"></head>
 <body>
 <a class="skip-link" href="#main">跳至正文</a>
@@ -27,27 +27,27 @@
     <nav class="header-nav" aria-label="主导航">
       <a href="index.html">最新一期</a>
       <a href="archive.html">往期归档 <span aria-hidden="true">↗</span></a>
-      <span class="header-date">2026.10.18<br>SUNDAY EDITION</span>
+      <span class="header-date">2026.10.19<br>MONDAY EDITION</span>
     </nav>
   </div>
 </header>
 <section class="hero" aria-labelledby="issue-title">
   <div class="shell">
     <div class="edition-line">
-      <div class="edition-label"><span class="status-dot" aria-hidden="true"></span><span class="eyebrow">Issue 008 / Seeds &amp; Silence</span></div>
-      <time class="eyebrow" datetime="2026-10-18">2026 年 10 月 18 日 · 星期日</time>
+      <div class="edition-label"><span class="status-dot" aria-hidden="true"></span><span class="eyebrow">Issue 009 / Gates &amp; Merges</span></div>
+      <time class="eyebrow" datetime="2026-10-19">2026 年 10 月 19 日 · 星期一</time>
     </div>
     <div class="hero-grid">
       <div class="hero-copy">
-        <p class="hero-kicker">本期主题 / 从数字的来历，到没有落音的节拍</p>
-        <h1 id="issue-title">25年的谜底，<br><span>藏在时间戳里。</span></h1>
-        <p class="hero-deck">一串公开参数，留下了怎样的历史指纹？<br>没有新音符的地方，为什么也值得建模？<br>最后，去看看真企鹅身旁的机器邻居。</p>
+        <p class="hero-kicker">本期主题 / 改写一条电路，也改写开发的尺度</p>
+        <h1 id="issue-title">省下量子门，<br><span>接住代码洪流。</span></h1>
+        <p class="hero-deck">量子程序，还能省掉多少昂贵的操作？<br>一天合并三万次代码，仓库要怎样重做？<br>最后，让两个宇宙在积木桌上相遇。</p>
         <a class="hero-cta" href="#science">开始阅读 <span class="arrow" aria-hidden="true">↓</span></a>
       </div>
-<nav class="issue-picks" aria-labelledby="picks-heading"><div class="picks-heading"><h2 id="picks-heading">本期看点</h2><span>03 STORIES / 任选一篇开始 ↘</span></div><a class="pick" href="#science"><span class="pick-number">01</span><span class="pick-copy"><small>密码史 / ANTHROPIC</small><strong>25年种子悬案，线索是一只旧时钟</strong></span><span class="pick-arrow" aria-hidden="true">↗</span></a><a class="pick" href="#paper"><span class="pick-number">02</span><span class="pick-copy"><small>近期论文 / DuET</small><strong>没有落音，也可能有一拍</strong></span><span class="pick-arrow" aria-hidden="true">↗</span></a><a class="pick" href="#curiosity"><span class="pick-number">03</span><span class="pick-copy"><small>科技趣闻 / ROBOZOO</small><strong>真企鹅身旁，多了一位机器邻居</strong></span><span class="pick-arrow" aria-hidden="true">↗</span></a></nav>
+<nav class="issue-picks" aria-labelledby="picks-heading"><div class="picks-heading"><h2 id="picks-heading">本期看点</h2><span>03 STORIES / 任选一篇开始 ↘</span></div><a class="pick" href="#science"><span class="pick-number">01</span><span class="pick-copy"><small>近期论文 / QUANTUM</small><strong>AI把一项量子电路的门数压到约1/12</strong></span><span class="pick-arrow" aria-hidden="true">↗</span></a><a class="pick" href="#paper"><span class="pick-number">02</span><span class="pick-copy"><small>后端架构 / SCION</small><strong>一天三万次合并，版本控制开始变形</strong></span><span class="pick-arrow" aria-hidden="true">↗</span></a><a class="pick" href="#curiosity"><span class="pick-number">03</span><span class="pick-copy"><small>科技趣闻 / LEGO IDEAS</small><strong>星战×漫威：这次轮到玩家搭跨界</strong></span><span class="pick-arrow" aria-hidden="true">↗</span></a></nav>
     </div>
     <div class="hero-bottom">
-      <p>一场参数考古，一段节拍重建，一对水中邻居。</p>
+      <p>一篇电路论文，一个仓库架构案例，一场跨界创作。</p>
       <span class="issue-number">LESS NOISE. MORE SIGNAL.</span>
     </div>
   </div>
@@ -55,19 +55,20 @@
 <div class="contents">
   <div class="shell contents-inner">
     <p class="contents-title">QUICK JUMP</p>
-    <nav aria-label="栏目快速跳转"><a href="#science"><span>01</span> 种子的来历</a><a href="#paper"><span>02</span> 无声的节拍</a><a href="#curiosity"><span>03</span> 机器人企鹅</a></nav>
+    <nav aria-label="栏目快速跳转"><a href="#science"><span>01</span> 更省的量子电路</a><a href="#paper"><span>02</span> 三万次代码合并</a><a href="#curiosity"><span>03</span> 两个积木宇宙</a></nav>
     <p class="contents-note">为理解而读，为实践而选。</p>
   </div>
 </div>
-<main id="main"><section class="shell edition-intro"><p class="section-kicker">EDITOR’S NOTE / 编者的话</p><p>有时，进展来自换一种表示：把神秘字符串看作旧程序的输出，把钢琴演奏看作音符与连续时间，再把动物的动作变成能感知环境的机器行为。今天的三个故事，都从一个具体问题开始。</p></section><div class="shell edition-body"><article id="science" class="edition-story" aria-labelledby="science-title"><div class="story-label">01 / DIGITAL ARCHAEOLOGY <span>官方研究 · 10月16日</span></div><h2 id="science-title">一串种子的来历，<br>藏在旧时钟里</h2><p class="story-deck">一桩延续约25年的参数来源悬案，有了能直接重算的答案。</p><div class="story-grid"><div class="story-visual"><figure><a href="assets/seed-recipe-v1.png" target="_blank" rel="noopener noreferrer" aria-label="打开完整图片"><img src="assets/seed-recipe-v1.png" width="1600" height="1152" alt="P-256公开参数种子的复现路径：1997年8月16日UTC时间戳初始化lrand48，取第1842组20字节，与标准种子匹配。"></a><figcaption>编辑原创：P-256来源配方的简化示意。本刊独立重算此例匹配；这是公开参数来源，不是私钥恢复。 <a href="https://www.anthropic.com/research/ecdsa-curve-origins">原始来源 ↗</a></figcaption></figure></div><div class="story-copy"><p>NIST在2000年采用的一组椭圆曲线公布了生成参数所用的种子，却没有说明这些数字从哪来。多年来，研究者甚至沿着“幽默短句的哈希”这条传闻寻找答案。</p><p>Anthropic 10月16日称，员工让内部研究模型换个角度调查；Claude在不到半小时内追溯出五个NIST素数曲线种子的来源：旧C库的<strong>lrand48伪随机数发生器，加一个Unix时间戳</strong>。</p><h3>把谜底变成一段可检查的计算</h3><p>以P-256为例：用1997年8月16日01:52:34 UTC初始化，每组采集20字节，第1,842组就得到公开种子。本刊按公开算法独立重算这一例，160-bit结果与标准所列值一致。</p><p>“不到半小时”和发现过程属于厂商叙述；数值匹配则可以检查。原文说模型先识别旧生成器的位模式，再借助格基约简恢复截断状态，反向寻找初始化时间。</p><h3>解开来历，不等于破解密码</h3><p>恢复的是公开曲线参数的生成来源，<strong>不是用户私钥，也不是新的签名攻击</strong>。B-163种子、若干基点来源，以及为何跳过部分可行候选仍未解释；不能把结果写成“证明绝无后门”。</p><p>编辑观察：最有启发的动作，是暂时放下流传多年的故事，回头问“那个年代的程序员可能写了什么代码”。AI的发现叙事值得关注，可重放的证据更值得留下。</p></div></div><div class="source-list"><a href="https://www.anthropic.com/research/ecdsa-curve-origins" target="_blank" rel="noopener noreferrer">官方研究与复现代码 ↗</a><a href="https://csrc.nist.gov/files/pubs/fips/186-2/final/docs/fips186-2.pdf#page=34" target="_blank" rel="noopener noreferrer">历史标准中的P-256参数 ↗</a><span>研究公布：2026.10.16；标准为历史原件 · 核验：2026.10.18（UTC+8）</span></div></article><article id="paper" class="edition-story" aria-labelledby="paper-title"><div class="story-label">02 / THE READING ROOM <span>近期论文 · 10月15日首发</span></div><h2 id="paper-title">没有落音，<br>也可能有一拍</h2><p class="story-deck">演奏可以自由伸缩，谱面却要告诉下一位演奏者：这一拍该落在哪里。</p><div class="story-grid"><div class="story-visual"><figure><a href="assets/duet-beat-v1.png" target="_blank" rel="noopener noreferrer" aria-label="打开完整图片"><img src="assets/duet-beat-v1.png" width="1600" height="1152" alt="三个音符起点对应四个节拍，其中一个节拍没有新音符；DuET让音符与时间帧编码器交换信息的原创示意。"></a><figcaption>编辑原创：节拍与音符起点的差别。非真实曲目或模型输出；示意拍距不代表模型20毫秒的时间帧间隔。 <a href="https://arxiv.org/html/2610.21467v1">原始来源 ↗</a></figcaption></figure></div><div class="story-copy"><p>钢琴手稍晚一点按下琴键，不一定意味着谱上多了复杂的连音。NUS预印本DuET处理演奏MIDI，把实际起音与时长整理成记谱位置、时值、声部和小节等属性。</p><p><strong>它同时看音符和连续时间。</strong>音符编码器观察每次落音；时间帧编码器以20毫秒网格读取MIDI派生的琴键活动与踏板状态。长音或休止期间没有新音，拍子仍在走，两条分支通过双向交叉注意力交换信息。</p><h3>作者实验 / 两类曲目，改善差别很大</h3><p>在79份Gangqinpu共同有效测试样本上，MUSTER均错率从最强基线6.56%降至3.64%；59份古典ASAP样本则从11.30%到11.22%。ASAP对照数字沿用既有论文，并非全部重新训练。</p><p>这个均值汇总音高、漏音、多音及起止时刻错误，不等于“识谱准确率96.36%”。两组结果的反差也提醒我们，流行钢琴上的收益不能直接推广到所有曲目。</p><h3>适合接在哪一段流程？</h3><p>DuET做的是MIDI到谱的中间环节。作者音频演示先用Transkun v2转录，再由MuseScore 4排版；模型直接复制输入音高、一音进一音出，不能替前端纠正错音或补回漏音。</p><p>编辑判断：它对节奏整理工具有具体启发，也展示了“事件序列＋连续时间”双视角的价值。论文仍为预印本；上述实验来自作者，本刊未复跑模型。</p></div></div><div class="source-list"><a href="https://arxiv.org/html/2610.21467v1" target="_blank" rel="noopener noreferrer">v1方法、表2与实验 ↗</a><a href="https://arxiv.org/abs/2610.21467" target="_blank" rel="noopener noreferrer">论文日期与版本 ↗</a><a href="https://github.com/wei-zeng98/DuET" target="_blank" rel="noopener noreferrer">作者代码与演示 ↗</a><a href="https://amtevaluation.github.io/" target="_blank" rel="noopener noreferrer">MUSTER指标说明 ↗</a><span>所读v1首发：2026.10.15；近期选读，非今日新发 · 核验：2026.10.18（UTC+8）</span></div></article><article id="curiosity" class="edition-story" aria-labelledby="curiosity-title"><div class="story-label">03 / SIDE QUEST <span>科技趣闻 · 10月16日开幕</span></div><h2 id="curiosity-title">真企鹅身旁，<br>多了一位机器邻居</h2><p class="story-deck">一起入镜，不在同一池。先看照片，猜猜哪只是机器。</p><div class="story-grid"><div class="story-visual"><figure><a href="assets/penguin-robozoo.jpg" target="_blank" rel="noopener noreferrer" aria-label="打开完整图片"><img src="assets/penguin-robozoo.jpg" width="790" height="588" alt="前方为水中自动游泳的机器人企鹅，后方为相邻池中的真实洪堡企鹅。"></a><figcaption>前方为机器人，后方为相邻池中的洪堡企鹅。图片来源：株式会社ROBOZOO／PR TIMES，依据媒体条款用于本条新闻报道；原图未裁切。 <a href="https://prtimes.jp/main/html/rd/p/000000002.000188579.html">原始来源 ↗</a> <a href="https://prtimes.jp/main/html/kiyaku">使用条款 ↗</a></figcaption></figure></div><div class="story-copy"><p>日本和歌山Adventure World宣布从10月16日起展示自动游泳的机器人企鹅。它和真正的洪堡企鹅待在相邻水池，观众可以对照机器的稳定动作与动物多变的行为。</p><p>园方“ココロボ”团队制作身体，ROBOZOO负责电路、传感器和自主控制。按双方公告，机器人会依据周围状况改变泳法，让展出不再完全依赖工作人员遥控，因而能延长展示时间。</p><h3>编辑观察 / 机器人也可以让人更想看动物</h3><p>这次展示把人工模仿和真实生命放在眼前比较。它的趣味不在于把机器认成真企鹅，而在于看出动作哪里相像、哪里不同，再追问感知与控制是怎样实现的。</p><p>公告未给出续航、速度或避障成功率，本刊未现场体验。10月14日是公告日，10月16日是计划展示起始日；展示可能因维护或设备状态调整，不能据公告保证每场均开放。</p></div></div><div class="source-list"><a href="https://prtimes.jp/main/html/rd/p/000000002.000188579.html" target="_blank" rel="noopener noreferrer">ROBOZOO官方公告 ↗</a><a href="https://prtimes.jp/main/html/rd/p/000001204.000040302.html" target="_blank" rel="noopener noreferrer">园方官方公告 ↗</a><a href="https://prtimes.jp/main/html/kiyaku" target="_blank" rel="noopener noreferrer">新闻图片使用条款 ↗</a><span>公告：2026.10.14；宣布展示自日本当地10月16日起 · 核验：2026.10.18（UTC+8）</span></div></article></div><section class="shell edition-close"><p>LESS NOISE. MORE SIGNAL.</p><h2>换一个问题，也许就看见了线索。</h2><p>本期固定链接保留图文与来源。继续读：<a href="archive.html">往期归档 ↗</a></p></section></main>
+<main id="main"><section class="shell edition-intro"><p class="section-kicker">EDITOR’S NOTE / 编者的话</p><p>周一不凑一串版本号。今天追两个具体问题：同样的计算，能不能少用资源；当代码产出暴涨，原来的协作工具会在哪里吃紧。再留一点篇幅给创作的乐趣。以下是近期材料选读，均保留原始发布日期。</p></section><div class="shell edition-body"><article id="science" class="edition-story" aria-labelledby="science-title"><div class="story-label">01 / QUANTUM CIRCUITS <span>近期论文 · 10月15日</span></div><h2 id="science-title">量子计算也需要，<br>精打细算的程序员</h2><p class="story-deck">节省的是电路资源，离现实中的加速还有几步。</p><div class="story-grid"><div class="story-visual"><figure><a href="assets/quantum-dqi-v1.png" target="_blank" rel="noopener noreferrer" aria-label="打开完整图片"><img src="assets/quantum-dqi-v1.png" width="1600" height="1152" alt="论文DQI解码器案例的资源估计：Toffoli门由约510万降至44万，逻辑量子比特由1938降至1837。"></a><figcaption>编辑原创：论文表1中DQI案例的资源估计。门数与量子比特分别比较；不是实际量子硬件运行时间。 <a href="https://arxiv.org/abs/2610.22367">原始来源 ↗</a></figcaption></figure></div><div class="story-copy"><p>10月16日，Anthropic公布Claude Mythos 5参与量子电路设计的研究：模型提出方案，独立评估器检查正确性并计算资源成本。论文八项任务中，七项相对所列基线同时减少Toffoli门与量子比特，另一项改善二者权衡。</p><p>其中，DQI优化算法的Reed–Solomon解码器把Toffoli门数从约510万降到44万，约为原来的十二分之一；逻辑量子比特从1938降到1837。这里的解码器是算法子程序，不能误写成芯片的硬件纠错系统。</p><h3>两种数字，量的是不同成本</h3><p>Toffoli是一种可逆逻辑门，门数量可用来衡量这类电路的计算资源；逻辑量子比特衡量电路占用的逻辑空间。两者减少都可能有价值，但都不等同于秒数，也不是实际物理比特总量。</p><p>作者描述的改法包括换用适合固定轮次的算法、从当前状态重建历史，以及在指定输入分布和失败预算内压缩历史栈。程序不能随意覆盖中间信息，必须兼顾可逆性与“反计算”清理，这正是经典代码直译可能变昂贵的地方。</p><h3>论文能说明什么，不能说明什么？</h3><p>这是预印本的电路资源结果，本刊没有复跑；部分基线为朴素可逆实现。<strong>某个子程序的门数降至1/12，不代表整台量子计算机实测提速12倍</strong>。硬件、纠错及其他子程序仍影响总成本，允许失败的优化还依赖其分布假设。</p><p>编辑判断：可迁移的思路是让“提案”和“验算”分工。先把正确性、资源指标与可接受误差写清，再用外部评估器筛选方案。即使不做量子计算，这也比一句“请优化性能”更像可执行的工程实验。</p>
+</div></div><div class="source-list"><a href="https://arxiv.org/abs/2610.22367" target="_blank" rel="noopener noreferrer">论文原文与版本 ↗</a><a href="https://www.anthropic.com/research/designing-efficient-quantum-circuits" target="_blank" rel="noopener noreferrer">官方研究介绍 ↗</a><span>论文首发：2026.10.15 UTC（北京时间10.16）；官方介绍：10.16 · 核验：2026.10.19（UTC+8）</span></div></article><article id="paper" class="edition-story" aria-labelledby="paper-title"><div class="story-label">02 / SOURCE CONTROL <span>工程案例 · 10月13日</span></div><h2 id="paper-title">每天三万次合并，<br>让版本控制换了形态</h2><p class="story-deck">代码能写得更快，检出、合并和历史查询也要跟得上。</p><div class="story-grid"><div class="story-visual"><figure><a href="assets/scion-flow-v1.png" target="_blank" rel="noopener noreferrer" aria-label="打开完整图片"><img src="assets/scion-flow-v1.png" width="1600" height="1152" alt="Scion以在线客户端调用版本控制API，服务端处理差异和历史，并将变更集与内容寻址文件保存到后端的概念图。"></a><figcaption>编辑原创：依据官方工程文章整理的职责分工示意，省略缓存、索引等实现细节；不是完整部署拓扑。 <a href="https://www.anthropic.com/engineering/redesigning-source-control">原始来源 ↗</a></figcaption></figure></div><div class="story-copy"><p>Anthropic称，2026年5月日均合并约2,500次，到9月已超过30,000次；CI每天约2,500万次代码检出。团队花五个月迁移到自研版本控制Scion。以上是公司自报的内部规模，并非通用性能基准。</p><p>它的关键取舍是<strong>客户端默认在线，重活交给服务端</strong>：差异、历史和合并经API完成，本地只缓存有限对象，工作副本按需取文件。查询一行的来历，不必先下载一座仓库。</p><h3>变化集，为什么不必等同于一棵完整目录树？</h3><p>Scion把changeset记为写前日志中的一条记录，保存相对第一父节点的改动列表，以及指向内容寻址文件的引用。创建变化集与移动分支引用分开；后者用Spanner单行的比较并交换操作处理。</p><p>编辑拆解：这种分工把“记录不可变事实”和“决定当前指向哪里”拆开。前者便于缓存和并行，后者仍要处理一致性。把提交做便宜，并不会自动让互相冲突的改动都安全落到主线。</p><h3>普通团队，值得学什么？</h3><p>先量出等待发生在哪里：全量检出、依赖安装、测试排队，还是人工评审？如果瓶颈只是重复取文件，缓存和稀疏检出可能更划算。在线集中式服务也要承担网络可用性与服务运维成本，不能因一个极端工作负载就断言Git过时。</p><p>这是一份厂商工程经验，本刊未部署Scion、未复测吞吐。可借鉴的是职责和成本拆分，是否值得自研要看自己的测量。</p></div></div><div class="source-list"><a href="https://www.anthropic.com/engineering/redesigning-source-control" target="_blank" rel="noopener noreferrer">官方工程文章 ↗</a><span>首发：2026.10.13；补充先行项目说明：10.15 · 核验：2026.10.19（UTC+8）</span></div></article><article id="curiosity" class="edition-story" aria-labelledby="curiosity-title"><div class="story-label">03 / SIDE QUEST <span>科技趣闻 · 创作平台</span></div><h2 id="curiosity-title">星战与漫威，<br>这次在积木桌上相遇</h2><p class="story-deck">一个官方跨界主题，把“如果它们同框”交给玩家。</p><div class="story-copy culture-copy"><p>LEGO在10月10日纽约漫展宣布一项LEGO Ideas挑战：让玩家把星球大战与漫威的载具、角色或场景重新组合。官方称，这是该平台首次以这两个宇宙的混搭为挑战主题。</p><p>公告安排在2026年12月15日开始作品投票，大奖结果在2027年公布。这里介绍的是10月10日发布的近期趣闻，不是今天开赛；报名资格、期限和知识产权条件仍须以活动页规则为准。</p><h3>编辑观察 / 平台也在设计“允许怎样想象”</h3><p>创作平台最有趣的功能，有时不是新增一个按钮，而是提供明确的共同题目。限制在载具、角色、场景三类，既给参与者入口，也让观众更容易比较作品。它把原本散落在粉丝脑海里的跨界点子，变成可以展示、讨论和投票的共同作品集。</p><p>想看实物与活动视觉，可以从下方官方页进入。本刊没有获得该图的明确转载许可，因此不把官方宣传图搬进正文；也不把参与挑战等同于获得普遍商用授权。</p></div><div class="source-list"><a href="https://www.lego.com/en-us/aboutus/news/2026/october/lego-ideas-marvel-star-wars" target="_blank" rel="noopener noreferrer">LEGO官方公告 ↗</a><a href="https://ideas.lego.com/campaigns/hope-assembles" target="_blank" rel="noopener noreferrer">官方活动入口与规则 ↗</a><span>公告：2026.10.10；投票计划：2026.12.15 · 核验：2026.10.19（UTC+8）</span></div></article></div><section class="shell edition-close"><p>LESS NOISE. MORE SIGNAL.</p><h2>先找到最贵的那一步。</h2><p>本期固定链接保留图文与来源。</p><p>延伸阅读：<a href="2026-10-17-memory-and-light.html">007｜拆开24GB：另一种资源账本 ↗</a> · <a href="2026-10-18-seeds-and-silence.html">008｜公开参数的历史配方 ↗</a></p></section></main>
 <footer class="site-footer">
   <div class="shell">
     <div class="footer-inner">
       <a href="index.html" class="footer-brand">技术晨刊<span>A CLEARER VIEW OF WHAT’S NEXT.</span></a>
       <nav class="footer-links" aria-label="页脚导航"><a href="index.html">最新一期</a><a href="archive.html">往期归档</a><a href="#issue-title">回到顶部 ↑</a></nav>
-      <p class="footer-small">ISSUE 008<br>2026.10.18 · UTC+8</p>
+      <p class="footer-small">ISSUE 009<br>2026.10.19 · UTC+8</p>
     </div>
-    <p class="footer-disclosure">来源与方法：依据官方研究、论文原文和园方公告整理。厂商叙述、作者实验和编辑观察已区分；本刊仅重算P-256种子示例，未复跑DuET或现场体验企鹅展示。两张解释图原创；企鹅照片按PR TIMES新闻用途条款使用，署名见图注。核验：2026年10月18日（UTC+8）。</p>
+    <p class="footer-disclosure">来源与方法：依据论文原文、官方工程文章与活动公告整理。资源数字来自作者估计，内部工程规模为厂商自报；本刊未复跑量子电路实验、部署Scion或参与挑战。两张解释图与封面为编辑原创。核验：2026年10月19日（UTC+8）。</p>
   </div>
 </footer>
 </body>
