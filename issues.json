@@ -1,5 +1,15 @@
 [
   {
+    "date": "2026-10-20",
+    "title": "让计算出示收据，让AI学会教人",
+    "path": "2026-10-20-proofs-and-practice.html",
+    "issue": "010",
+    "theme": "验证、教学与模拟",
+    "summary": "Magnetar可验证计算 · StudentSim模拟学生 · 地球上的一年火星任务",
+    "updated": "2026-10-20",
+    "update_note": "原稿未能恢复，经用户同意重新调研整理。"
+  },
+  {
     "date": "2026-10-19",
     "title": "省下量子门，接住代码洪流",
     "path": "2026-10-19-gates-and-merges.html",
