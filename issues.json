@@ -1,5 +1,14 @@
 [
   {
+    "date": "2026-10-21",
+    "title": "换掉实现，守住行为",
+    "path": "2026-10-21-behavior-by-design.html",
+    "issue": "011",
+    "theme": "行为保真、训练架构与工程验证",
+    "summary": "低资源语言代码迁移 · Agent Lightning · JPEG XL · 火星旋翼实验",
+    "updated": "2026-10-21"
+  },
+  {
     "date": "2026-10-20",
     "title": "让计算出示收据，让AI学会教人",
     "path": "2026-10-20-proofs-and-practice.html",
