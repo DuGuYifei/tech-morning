@@ -1,5 +1,14 @@
 [
   {
+    "date": "2026-10-22",
+    "title": "把关口前移，把行动看清",
+    "path": "2026-10-22-gates-and-feedback.html",
+    "issue": "012",
+    "theme": "凭据生命周期、依赖入口与行动反馈",
+    "summary": "GitHub CLI短期凭据 · npm依赖防火墙 · ReAct回顾 · 猎户座流星雨",
+    "updated": "2026-10-22"
+  },
+  {
     "date": "2026-10-21",
     "title": "换掉实现，守住行为",
     "path": "2026-10-21-behavior-by-design.html",
