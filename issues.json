@@ -1,5 +1,14 @@
 [
   {
+    "date": "2026-10-23",
+    "title": "让确认有语义，让重试有边界",
+    "path": "2026-10-23-confirm-and-retry.html",
+    "issue": "013",
+    "theme": "结构化澄清、事务隔离与事件自动化",
+    "summary": "MCP澄清协议 · PostgreSQL事务重试 · Linear Loops · 旅行者金唱片",
+    "updated": "2026-10-23"
+  },
+  {
     "date": "2026-10-22",
     "title": "把关口前移，把行动看清",
     "path": "2026-10-22-gates-and-feedback.html",
