@@ -1,5 +1,14 @@
 [
   {
+    "date": "2026-10-24",
+    "title": "把信息留在源头，把事件留在账上",
+    "path": "2026-10-24-context-and-outbox.html",
+    "issue": "014",
+    "theme": "上下文检索、可靠投递与应用身份",
+    "summary": "Agent按需检索 · 事务发件箱 · GitHub Apps企业安装 · Zoozve星名趣闻",
+    "updated": "2026-10-24"
+  },
+  {
     "date": "2026-10-23",
     "title": "让确认有语义，让重试有边界",
     "path": "2026-10-23-confirm-and-retry.html",

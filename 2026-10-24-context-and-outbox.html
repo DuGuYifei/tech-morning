@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><meta name="theme-color" content="#142c39"><title>把信息留在源头，把事件留在账上 · 技术晨刊014</title><meta name="description" content="Agent按需检索、事务发件箱、GitHub Apps企业安装正式可用与Zoozve命名趣闻。"><link rel="canonical" href="https://news.liuyifei.tech/2026-10-24-context-and-outbox.html"><link rel="stylesheet" href="assets/style-014.css"><link rel="icon" href="assets/favicon.svg"><meta property="og:title" content="把信息留在源头，把事件留在账上 · 技术晨刊014"><meta property="og:url" content="https://news.liuyifei.tech/2026-10-24-context-and-outbox.html"><meta property="og:image" content="https://news.liuyifei.tech/assets/cover-014.jpg"></head>
+<body><a class="skip" href="#main">跳至正文</a><header><a class="brand" href="index.html">技术晨刊 <span>THE TECH MORNING</span></a><nav aria-label="主导航"><a href="archive.html">往期归档 ↗</a></nav></header>
+<div class="wrap"><section class="hero"><p class="meta">ISSUE 014 / <time datetime="2026-10-24">2026.10.24 · 星期六 · UTC+8</time></p><div class="hero-grid"><div><p class="kicker">LESS NOISE. MORE SIGNAL.</p><h1>把信息留在源头，<br><span>把事件留在账上。</span></h1><p class="deck">上下文不必装下整个世界，消息却不能只留在进程内存里。今天从“哪些信息现在需要”与“哪些事实必须留下”谈起。</p></div><img src="assets/cover-014.jpg" width="1600" height="900" alt="本刊原创封面：上下文通向检索，事务提交通向投递；技术晨刊014，2026年10月24日"></div>
+<nav class="picks" aria-label="本期看点与章节跳转"><a href="#agent"><small>01 / AGENT 技术分享</small><strong>需要时，再读原文</strong><span>轻量引用与按需上下文 ↗</span></a><a href="#backend"><small>02 / 后端技术分享</small><strong>给事件留一张底单</strong><span>事务发件箱的故障窗口 ↗</span></a><a href="#news"><small>03 / 科技新闻</small><strong>企业自动化换身份</strong><span>GitHub Apps 企业安装正式可用 ↗</span></a><a href="#curiosity"><small>04 / 科技趣闻</small><strong>手写误读，成了星名</strong><span>金星准卫星 Zoozve 的来历 ↗</span></a></nav><p class="intro">2026 年 10 月 24 日早间（UTC+8）核验：两篇技术资料选读、一则 10 月 23 日官方公告与一则历史科技趣闻。历史资料不作当天新闻；本文未进行独立性能实验。</p></section>
+<main id="main"><section class="story" id="agent"><p class="kicker">01 / AGENT · 技术分享 · 工程文章选读</p><h2>把资料的位置留下，需要时再读</h2><p class="lead">上下文设计的对象，是下一步决策需要的信息。</p>
+<p><strong>来源坐标。</strong>Anthropic 于 2025 年 9 月 29 日发布上下文工程文章，讨论如何在运行过程中整理模型可见的信息。本节选读其中的按需检索思路，不是今日模型或 API 更新；文章于本轮重新核验。</p>
+<p><strong>作者方法。</strong>先保留文件路径、存储的查询、网页链接等轻量引用，等任务需要时再通过工具读取内容。目录、命名和时间戳可帮助选择下一份资料。作者也提出混合方式：必要背景预先提供，其余信息运行时探索。代价是额外检索时间，以及找错方向或漏掉关键内容的可能。</p>
+<div class="method"><p><strong>编辑设计示例。</strong>排查一次导出失败，先提供目标、错误摘要和日志位置；Agent 读取相关时间段，定位请求 ID，再读对应调用链。不要每轮都复制整天日志，也不要只给一句“导出坏了”让它猜。</p><p>建议在引用旁保存版本或时间范围，在结论旁保留证据位置。下一轮读到更新后的文件时，应明确这是新状态，不能把旧判断直接套上去。</p></div>
+<p><strong>怎么验收。</strong>编辑建议用同一组真实任务比较“全部预载”与“按需读取”：观察任务是否完成、关键证据是否遗漏、总耗时和输入量。输入量下降本身不代表质量提高；漏掉一条约束，可能比多读几页更贵。这是建议的评估方法，不是已完成实验。</p>
+<p><strong>适用边界。</strong>适合资料量大、局部相关性强、能够可靠定位原文的任务。权限约束与必要任务指令应明确提供；引用不可访问时要报告缺证，不能用摘要冒充原文。外部资料进入上下文，也不因此获得指挥工具执行的权限。</p>
+<div class="sources"><a href="https://www.anthropic.com/research/effective-context-engineering-for-ai-agents">Anthropic 原文 · 2025-09-29，核验 2026-10-24（UTC+8） ↗</a><a href="2026-10-22-gates-and-feedback.html">相关阅读：第012期，ReAct 如何接收外部反馈 ↗</a></div></section>
+<section class="story" id="backend"><p class="kicker">02 / 后端与架构 · 技术分享 · 模式选读</p><h2>事务提交了，通知还没发出去怎么办？</h2><p class="lead">把“需要通知”也写进同一笔事务。</p>
+<p><strong>来源坐标。</strong>AWS Prescriptive Guidance 的 Transactional outbox 指南为滚动文档，本页未单列发布日期；本节按 2026 年 10 月 24 日（UTC+8）可见内容选读，不对应某个数据库新版本。</p>
+<p><strong>官方机制。</strong>数据库更新与消息发送是两次独立写入：一边成功、另一边失败，会留下不一致。发件箱模式将业务记录和待发事件写入同一个数据库事务；另一个服务只读取已提交事件，再发送给消息系统。事务回滚时，事件记录也回滚。</p>
+<figure><img src="assets/outbox-014.png" width="900" height="1100" alt="事务发件箱流程：同一事务提交业务记录和事件；转发器读取已提交事件发送；消费者按事件ID去重。发送成功但尚未记录成功时可能重复投递，不能重复扣款。" loading="lazy"><figcaption>本刊原创架构图，依据 AWS 发件箱指南；消费者原子去重是编辑落地建议。箭头表示处理顺序，不代表端到端恰好一次或延迟保证。</figcaption></figure>
+<p><strong>最容易误解的边界。</strong>发件箱解决的是“业务与待发事件一起落库”，并未让数据库和远程消息系统变成同一个事务。转发器发出消息后、记录成功前崩溃，恢复时可能再发一次。AWS 因此提醒处理重复消息与通知顺序。</p>
+<div class="method"><p><strong>编辑落地建议。</strong>为每个业务事件分配稳定 ID；消费者把“已处理 ID”与业务变更放进自己的原子提交里。若副作用是远程扣款，仍需下游幂等接口或结果核查，单靠本地去重表无法封住所有故障窗口。</p><p>需要同一订单的顺序时，明确订单键与递增序号，并处理并行转发和迟到事件。观察待发数量、最老事件年龄与失败原因；积压没有清空之前，提交成功不等于下游已完成。</p></div>
+<p><strong>适用场景。</strong>适合订单、库存等需要在本地业务提交后发出事件的服务。它引入异步延迟、转发器维护和清理成本；跨服务的业务回滚仍需独立设计。本文不声称吞吐提升，也不把消息系统的去重等同于任意业务副作用只发生一次。</p>
+<div class="sources"><a href="https://docs.aws.amazon.com/prescriptive-guidance/latest/cloud-design-patterns/transactional-outbox.html">AWS 官方指南 · 滚动文档，核验 2026-10-24（UTC+8） ↗</a><a href="2026-10-23-confirm-and-retry.html">相关阅读：第013期，数据库隔离与事务重试 ↗</a></div></section>
+<section class="story" id="news"><p class="kicker">03 / 科技新闻 · 官方公告 2026-10-23</p><h2>GitHub Apps 的企业级安装正式可用</h2><p class="lead">更多治理自动化，可以从个人令牌迁向应用身份。</p>
+<p><strong>官方发布。</strong>GitHub 在 10 月 23 日公告中宣布企业级 GitHub Apps 安装正式可用，扩展企业与组织自动化可调用的 API 和权限。覆盖方向包括仓库策略与规则集、绕过请求读取、双因素认证要求、域名验证、IP 允许列表及企业管理设置。</p>
+<p><strong>版本与权限边界。</strong>公告称这些更新将进入 GHES 3.24；这不是说所有旧版自托管实例已具备同样能力。应用仍需在设置中选择对应权限，不能把“支持某项 API”理解成“安装后自动拥有全部管理权”。原文也未宣称已覆盖所有经典 PAT 使用场景。</p>
+<p><strong>编辑分析。</strong>值得先盘点定时任务真正调用哪些端点，再逐项核对权限和安装范围。迁移可先选一个只读报告任务，对比返回结果，再推进写入任务；遇到不支持的端点应留下清单。应用身份改善管理方式，但并不自动修复脚本逻辑或消除高权限操作风险。</p>
+<p><strong>事实范围。</strong>以上记录公告中的支持面与计划版本；本刊没有在企业账户中开启设置，也没有做兼容性或安全收益实测。</p>
+<div class="sources"><a href="https://github.blog/changelog/2026-10-23-enterprise-installations-for-github-apps-generally-available/">GitHub 原始公告 · 2026-10-23，核验 2026-10-24（UTC+8） ↗</a></div></section>
+<section class="story" id="curiosity"><p class="kicker">04 / 科技趣闻 · 历史命名档案</p><h2>一场手写误读，真的变成了星名</h2><p class="lead">Zoozve 的名字，起点是一张儿童太阳系海报。</p>
+<p><strong>NASA 档案。</strong>金星的准卫星 Zoozve 于 2002 年 11 月 11 日被发现，临时编号是 2002 VE68。画家 Alex Foster 制作海报时记下“2002 VE”，后来把自己的字迹读成了“Zoozve”。Radiolab 主持人 Latif Nasser 追查这个名字，并建议发现者 Brian Skiff 申请正式命名；NASA 记载该名称于 2024 年 2 月获批。</p>
+<p><strong>它不是金星的月亮。</strong>NASA 将准卫星解释为绕太阳运行、同时保持在某颗行星附近的小行星。金星没有天然卫星；“准”字不能省略，也不能据此画成一个绕金星运行的普通月球。</p>
+<p><strong>编辑观察。</strong>科学记录通常要纠正转录错误，这个故事却把错误保留为可追溯的名字。趣味不在于编号可以随便写，而在于一张海报、一次追问与正式命名程序，最后连到了同一个天体。本文为历史趣闻，未宣称今天发现了新卫星。</p>
+<div class="sources"><a href="https://science.nasa.gov/venus/venus-facts/">NASA Venus Facts · Moons / How Zoozve Got Its Name；页面未单列发布日期，核验 2026-10-24（UTC+8） ↗</a></div></section></main></div>
+<footer><p>技术晨刊 · 014 · LESS NOISE. MORE SIGNAL.</p><p>封面与流程图由本刊原创设计；官方机制、厂商公告与编辑建议随文区分，无独立性能实测。四个栏目完整同步至公众号阅读稿。</p><p><a href="2026-10-24-context-and-outbox.html">本期固定链接</a> · <a href="archive.html">往期归档</a></p></footer></body></html>
