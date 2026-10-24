@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><meta name="theme-color" content="#142d38"><title>让 Agent 放手跑测试之前，先把沙箱边界画清楚 · 技术晨刊015</title><meta name="description" content="用一次修复导出的任务，讲清 Shell 沙箱如何约束文件、网络与子进程，以及它管不到什么。"><link rel="canonical" href="https://news.liuyifei.tech/2026-10-25-agent-sandbox.html"><link rel="stylesheet" href="assets/style-015.css"><link rel="icon" href="assets/favicon.svg"><meta property="og:title" content="让 Agent 放手跑测试之前，先把沙箱边界画清楚"><meta property="og:url" content="https://news.liuyifei.tech/2026-10-25-agent-sandbox.html"><meta property="og:image" content="https://news.liuyifei.tech/assets/agent-015.png"></head><body class="single"><a class="skip" href="#main">跳至正文</a><header><a class="brand" href="index.html">技术晨刊<span>THE TECH MORNING</span></a><nav aria-label="主导航"><a href="2026-10-25-boundaries-and-cursors.html">本期合集</a><a href="archive.html">往期归档 ↗</a></nav></header><div class="shell"><section class="hero"><p class="eyebrow">ISSUE 015 / 01 / AGENT 技术解析</p><h1>让 Agent 放手跑测试之前，先把沙箱边界画清楚</h1><p class="intro">用一次修复导出的任务，讲清 Shell 沙箱如何约束文件、网络与子进程，以及它管不到什么。</p><p class="issue-note">明天又整什么 · <time datetime="2026-10-25">2026.10.25 · UTC+8</time></p></section><main id="main"><article class="story"><div class="story-inner"><p class="lead">让 Agent 自己跑测试，和把整台电脑交给它，中间应该有一道真正的门。</p>
+<p>你让一个编码 Agent 修复导出功能。它读代码、改文件，接着想运行测试。你点了一次允许。测试又拉起脚本，脚本再启动另一个进程——这时，你批准的究竟是一行命令，还是它接下来能碰到的一切？</p>
+<p>今天只拆一个机制：<strong>编码 Agent 的 Shell 沙箱</strong>。以 Claude Code 为例，重点不是模型会不会听话，而是即使它走错路，执行环境还允许它走多远。这是已有工程机制的选读，不是今日新功能发布。</p>
+<h3>把“别碰”从提示词变成执行边界</h3>
+<p>提示词里的“不要修改项目外文件”是一条行为要求。沙箱则在操作系统层限制进程访问资源：哪些路径可写，哪些位置不可读，网络能连到哪里。模型可以提出动作，但不能仅靠提出动作就获得资源。</p>
+<p>Anthropic 2025 年的原文介绍，运行时在 Linux 使用 bubblewrap、在 macOS 使用 Seatbelt，限制也覆盖命令启动的子进程。2026 年的后续文章把这件事概括为控制潜在损害范围。两篇文章讨论的是防线设计，不是“沙箱永远无法被突破”的承诺。</p>
+<figure><img src="assets/agent-body-015.png" width="900" height="1100" alt="原创沙箱图：Agent发起Shell命令，命令及子进程经过文件与网络两道边界；项目目录允许写，敏感目录和未批准网络拒绝。其他工具需独立设权。"><figcaption>本刊原创机制图。展示的是本文建议的任务边界，不是产品默认权限清单；其他工具不因 Shell 受限而自动受限。</figcaption></figure>
+<h3>仍然用“修导出”这个任务走一遍</h3>
+<p>假设项目在 <code>/work/exporter</code>。一个可审查的任务配置是：代码目录可写，依赖缓存按需要开放；私人文件与凭据目录拒绝读取；默认不出网，需要安装依赖时再明确允许目标服务。这里是编辑设计示例，不是可直接复制的产品配置。</p>
+<p>这样，测试可以生成报告、创建临时文件。即使某个测试脚本启动子进程，它也仍在同一执行边界里。若脚本试图读私人目录或连接未批准地址，应由边界拒绝，而不是等模型自觉停下来。</p>
+<p>失败信息也很重要。一次“连接被拒绝”，可能表示依赖确实缺失，也可能表示脚本正在做任务之外的事。先看它要访问什么，再判断是否应当开放。把整个网络放开，只是把问题藏回去了。</p>
+<h3>为什么文件和网络要一起管</h3>
+<p>只限制写文件，仍可能把可读内容发出去；只限制网络，又可能让进程改写以后会执行的配置。两道边界共同缩小风险，但每一项允许都仍有含义：能向某个代码托管域名发请求，不等于只能访问你自己的仓库。</p>
+<p>当前官方文档还特别说明，内置代理默认不检查加密连接里的内容。<strong>“域名在名单上”不是“请求内容已经安全审核”。</strong>因此，不应把敏感数据直接放进可读范围，再寄希望于一个宽泛的域名名单替你兜底。</p>
+<h3>最容易漏掉的是沙箱外的工具</h3>
+<p>按本次核验的 Claude Code 滚动文档，Shell 沙箱覆盖 Shell 命令及其子进程；文件工具、MCP 服务与 hooks 不在这一沙箱里。若另一个连接器能改线上数据，Shell 再严格，也没有限制那条路径。工具权限需要独立检查。</p>
+<p>同样，沙箱不能判断业务结果对不对。在允许写入的项目内删错文件，仍可能完全符合资源边界。代码差异审查、测试和发布权限，解决的是不同层次的问题。</p>
+<h3>上线前，验证“拦得住”也验证“做得完”</h3>
+<p>可以在不含真实秘密的测试工作区做一次边界验收：正常导出测试应完成；子进程读取一个专门放在禁止路径下的无害样本应失败；访问一个未批准的测试地址也应失败。然后检查拒绝记录，确认不是“任务失败后悄悄在沙箱外重跑”。这些是建议的验收步骤，本刊未做产品安全实测。</p>
+<p>取舍就在这里：收紧边界会增加依赖配置与兼容性维护，放宽边界又会扩大一次误操作的影响。适合从一个边界清楚的修复任务开始，让 Agent 在里面充分行动，再根据真实需要扩大范围。<strong>自主执行的前提，是先知道自主发生在哪里。</strong></p>
+<div class="sources"><h3>来源与版本</h3><p>核验日期：2026-10-25（UTC+8）。工程机制选读，未绑定某个安装版本；实际行为以所用版本及策略为准。</p><ul><li><a href="https://www.anthropic.com/research/claude-code-sandboxing">Anthropic：Beyond permission prompts</a>，原发 2025-10-20。</li><li><a href="https://www.anthropic.com/research/how-we-contain-claude">Anthropic：How we contain Claude across products</a>，原发 2026-05-25。</li><li><a href="https://code.claude.com/docs/en/sandboxing">Claude Code：Configure the sandboxed Bash tool</a>，滚动文档，未单列原始发布日期；本次核对覆盖范围与安全限制。</li></ul><p>相关阅读：<a href="2026-10-22-gates-and-feedback.html">第012期：凭据与依赖入口</a>。</p></div>
+</div></article></main></div><footer><p>技术晨刊 015 · 2026.10.25 · LESS NOISE. MORE SIGNAL.</p><p>作者：明天又整什么。本篇为独立文章；技术资料选读、新闻事实与编辑分析分别注明。</p><p><a href="2026-10-25-boundaries-and-cursors.html">本期固定合集</a> · <a href="archive.html">往期归档</a></p></footer></body></html>

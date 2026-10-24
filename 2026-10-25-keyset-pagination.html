@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><meta name="theme-color" content="#142d38"><title>翻到第 500 页为什么变慢？把 OFFSET 换成游标之前 · 技术晨刊015</title><meta name="description" content="从订单列表的慢查询和重复记录出发，拆解 PostgreSQL 游标分页的排序键、索引、实现与一致性边界。"><link rel="canonical" href="https://news.liuyifei.tech/2026-10-25-keyset-pagination.html"><link rel="stylesheet" href="assets/style-015.css"><link rel="icon" href="assets/favicon.svg"><meta property="og:title" content="翻到第 500 页为什么变慢？把 OFFSET 换成游标之前"><meta property="og:url" content="https://news.liuyifei.tech/2026-10-25-keyset-pagination.html"><meta property="og:image" content="https://news.liuyifei.tech/assets/backend-015.png"></head><body class="single"><a class="skip" href="#main">跳至正文</a><header><a class="brand" href="index.html">技术晨刊<span>THE TECH MORNING</span></a><nav aria-label="主导航"><a href="2026-10-25-boundaries-and-cursors.html">本期合集</a><a href="archive.html">往期归档 ↗</a></nav></header><div class="shell"><section class="hero"><p class="eyebrow">ISSUE 015 / 02 / 后端技术解析</p><h1>翻到第 500 页为什么变慢？把 OFFSET 换成游标之前</h1><p class="intro">从订单列表的慢查询和重复记录出发，拆解 PostgreSQL 游标分页的排序键、索引、实现与一致性边界。</p><p class="issue-note">明天又整什么 · <time datetime="2026-10-25">2026.10.25 · UTC+8</time></p></section><main id="main"><article class="story"><div class="story-inner"><p class="lead">用户只是再往下滑一屏，数据库为什么要从头数到第十万行？</p>
+<p>订单后台最初只有几百条记录。接口写成 <code>LIMIT 20 OFFSET 0</code>，简单好用。后来业务变大，翻到深处越来越慢；有人刚翻完第一页，第二页竟又见到同一笔订单。</p>
+<p>这两个现象可以用同一个主题解释：<strong>分页到底记住的是位置，还是边界？</strong>今天用 PostgreSQL 18 的语义拆解游标分页，也叫 keyset pagination。它不是某个新版本刚推出的魔法功能，而是一种查询设计。</p>
+<h3>先把“第几页”换成“从哪一条继续”</h3>
+<p>OFFSET 说的是：先跳过这么多行，再取结果。PostgreSQL 文档明确提醒，被跳过的行仍须在服务端计算，所以大偏移量可能低效。即使有索引，“跳过十万条”也不等于免费移动到一个数组下标。</p>
+<p>还有一个更直观的问题。按创建时间倒序看订单，第一页显示 A、B、C。此时新订单 X 插到最前面，第二次请求再跳过三条，列表变成 X、A、B、C……你就又拿到了 C。这是位置变化导致的重复，不是数据库忘了去重。</p>
+<figure><img src="assets/backend-body-015.png" width="900" height="1100" alt="原创分页示意：第一页A B C之后新增X，OFFSET跳过三条会再次返回C；以C的排序键作游标则从D继续。示例假设已有排序键不变。"><figcaption>本刊原创示例。字母表示同一筛选条件下的稳定排序；演示插入造成的位置变化，不是数据库性能测试。</figcaption></figure>
+<h3>一个时间戳还不够</h3>
+<p>游标记住上一页最后一条记录的排序键。下一页问“在它之后的记录有哪些”，不再问“排在第六十一位的是谁”。不过，只按 <code>created_at</code> 排序不够：同一时刻可能有多笔订单，必须加一个唯一的决胜字段。</p>
+<p>下面约定 <code>id</code> 是唯一主键，<code>created_at</code> 非空且创建后不改；租户由服务端鉴权上下文决定。每页显示 20 条，但查询 21 条，用额外一条判断是否还有下一页：</p>
+<pre><code>SELECT id, created_at, total_cents
+FROM orders
+WHERE tenant_id = $1
+  AND (created_at, id) &lt; ($2, $3)
+ORDER BY created_at DESC, id DESC
+LIMIT 21;</code></pre>
+<p><code>$2</code>、<code>$3</code> 是上一页最后一条<strong>实际展示</strong>的记录，不是多查出来的第 21 条。第一页省略游标条件。倒序对应小于号；同一时间下再比较 ID，才不会把同一秒里的其余订单一起跳掉。</p>
+<p>PostgreSQL 的行值比较从左往右找到第一个决定结果的字段。这正好对应上面的排序。不要把升序、降序混搭后仍照抄这个条件，也不要忽略空值：参与比较的空值可能让判断成为 unknown。本文通过非空约束避开这个分支。</p>
+<h3>索引要和这个问题一起设计</h3>
+<pre><code>CREATE INDEX orders_tenant_feed_idx
+ON orders (tenant_id, created_at DESC, id DESC);</code></pre>
+<p>等值过滤的租户放前面，后面跟排序键。这给数据库提供了按租户定位、沿排序边界继续读的路径；不是承诺任何数据分布下都会选择它。新增状态过滤、复杂关联或者很宽的返回列，都可能改变计划与成本。</p>
+<p>真正验收时，拿代表性的首屏与深页查询查看 <code>EXPLAIN (ANALYZE, BUFFERS)</code>，关注实际读行、排序与缓冲区访问。该命令会执行查询，应先在合适的测试数据上使用。这里给的是检查方法，没有虚构“快了多少倍”。</p>
+<h3>游标不是权限，也不是快照</h3>
+<p>实现接口时，我会让游标携带时间、ID、筛选条件摘要和格式版本，并做完整性校验。它只是续读提示；服务端每次仍要重新验证租户与访问权限。把 JSON 做成 Base64，并不会让它变得不可篡改。</p>
+<p>更重要的是，游标只能减少“前面新增记录导致后面位次平移”的影响。若排序键会变，一条记录仍可能跨过边界而重复或漏读；已删除的记录也不会凭空回来。所以订单流适合不可变的创建时间，频繁修改的更新时间流要另想清楚语义。</p>
+<p>财务导出若要求“某一刻的完整集合”，不能靠跨多次普通 HTTP 请求携带游标来保证。应该另行定义一致快照或离线导出任务。游标解决续读，不负责冻结世界。</p>
+<h3>那“直接跳到第 500 页”呢？</h3>
+<p>这恰好是它不擅长的地方：没有前一页边界，就无法直接接着读。无限滚动、按时间查看订单很合适；随机跳页、精确总页数，可能仍值得保留偏移分页或单独维护导航信息。</p>
+<p>因此，别把一次查询改写当成所有分页需求的统一答案。先确定用户是要“继续看”，还是要“按页码定位”。当需求确实是继续看时，记住上一条，比反复从头数更贴近问题本身。</p>
+<div class="sources"><h3>来源与版本</h3><p>版本基线：PostgreSQL 18。以下为持续维护的官方手册，页面未单列原始发布日期；核验 2026-10-25（UTC+8）。SQL、订单场景与游标封装为编辑示例，未声称完成性能实测。</p><ul><li><a href="https://www.postgresql.org/docs/18/queries-limit.html">7.6 LIMIT and OFFSET</a>：稳定排序与大偏移成本。</li><li><a href="https://www.postgresql.org/docs/18/functions-comparisons.html">9.25 Row and Array Comparisons</a>：行值比较与空值。</li><li><a href="https://www.postgresql.org/docs/18/indexes-ordering.html">11.4 Indexes and ORDER BY</a>；<a href="https://www.postgresql.org/docs/18/indexes-multicolumn.html">11.3 Multicolumn Indexes</a>：索引排序与前导约束。</li><li><a href="https://www.postgresql.org/docs/18/using-explain.html">14.1 Using EXPLAIN</a>：执行计划核验。</li></ul><p>相关阅读：<a href="2026-10-23-confirm-and-retry.html">第013期：事务隔离与重试</a>。</p></div>
+</div></article></main></div><footer><p>技术晨刊 015 · 2026.10.25 · LESS NOISE. MORE SIGNAL.</p><p>作者：明天又整什么。本篇为独立文章；技术资料选读、新闻事实与编辑分析分别注明。</p><p><a href="2026-10-25-boundaries-and-cursors.html">本期固定合集</a> · <a href="archive.html">往期归档</a></p></footer></body></html>

@@ -1,32 +1,71 @@
 <!doctype html>
-<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><meta name="theme-color" content="#142c39"><title>把信息留在源头，把事件留在账上 · 技术晨刊014</title><meta name="description" content="Agent按需检索、事务发件箱、GitHub Apps企业安装正式可用与Zoozve命名趣闻。"><link rel="canonical" href="https://news.liuyifei.tech/2026-10-24-context-and-outbox.html"><link rel="stylesheet" href="assets/style-014.css"><link rel="icon" href="assets/favicon.svg"><meta property="og:title" content="把信息留在源头，把事件留在账上 · 技术晨刊014"><meta property="og:url" content="https://news.liuyifei.tech/2026-10-24-context-and-outbox.html"><meta property="og:image" content="https://news.liuyifei.tech/assets/cover-014.jpg"></head>
-<body><a class="skip" href="#main">跳至正文</a><header><a class="brand" href="index.html">技术晨刊 <span>THE TECH MORNING</span></a><nav aria-label="主导航"><a href="archive.html">往期归档 ↗</a></nav></header>
-<div class="wrap"><section class="hero"><p class="meta">ISSUE 014 / <time datetime="2026-10-24">2026.10.24 · 星期六 · UTC+8</time></p><div class="hero-grid"><div><p class="kicker">LESS NOISE. MORE SIGNAL.</p><h1>把信息留在源头，<br><span>把事件留在账上。</span></h1><p class="deck">上下文不必装下整个世界，消息却不能只留在进程内存里。今天从“哪些信息现在需要”与“哪些事实必须留下”谈起。</p></div><img src="assets/cover-014.jpg" width="1600" height="900" alt="本刊原创封面：上下文通向检索，事务提交通向投递；技术晨刊014，2026年10月24日"></div>
-<nav class="picks" aria-label="本期看点与章节跳转"><a href="#agent"><small>01 / AGENT 技术分享</small><strong>需要时，再读原文</strong><span>轻量引用与按需上下文 ↗</span></a><a href="#backend"><small>02 / 后端技术分享</small><strong>给事件留一张底单</strong><span>事务发件箱的故障窗口 ↗</span></a><a href="#news"><small>03 / 科技新闻</small><strong>企业自动化换身份</strong><span>GitHub Apps 企业安装正式可用 ↗</span></a><a href="#curiosity"><small>04 / 科技趣闻</small><strong>手写误读，成了星名</strong><span>金星准卫星 Zoozve 的来历 ↗</span></a></nav><p class="intro">2026 年 10 月 24 日早间（UTC+8）核验：两篇技术资料选读、一则 10 月 23 日官方公告与一则历史科技趣闻。历史资料不作当天新闻；本文未进行独立性能实验。</p></section>
-<main id="main"><section class="story" id="agent"><p class="kicker">01 / AGENT · 技术分享 · 工程文章选读</p><h2>把资料的位置留下，需要时再读</h2><p class="lead">上下文设计的对象，是下一步决策需要的信息。</p>
-<p><strong>来源坐标。</strong>Anthropic 于 2025 年 9 月 29 日发布上下文工程文章，讨论如何在运行过程中整理模型可见的信息。本节选读其中的按需检索思路，不是今日模型或 API 更新；文章于本轮重新核验。</p>
-<p><strong>作者方法。</strong>先保留文件路径、存储的查询、网页链接等轻量引用，等任务需要时再通过工具读取内容。目录、命名和时间戳可帮助选择下一份资料。作者也提出混合方式：必要背景预先提供，其余信息运行时探索。代价是额外检索时间，以及找错方向或漏掉关键内容的可能。</p>
-<div class="method"><p><strong>编辑设计示例。</strong>排查一次导出失败，先提供目标、错误摘要和日志位置；Agent 读取相关时间段，定位请求 ID，再读对应调用链。不要每轮都复制整天日志，也不要只给一句“导出坏了”让它猜。</p><p>建议在引用旁保存版本或时间范围，在结论旁保留证据位置。下一轮读到更新后的文件时，应明确这是新状态，不能把旧判断直接套上去。</p></div>
-<p><strong>怎么验收。</strong>编辑建议用同一组真实任务比较“全部预载”与“按需读取”：观察任务是否完成、关键证据是否遗漏、总耗时和输入量。输入量下降本身不代表质量提高；漏掉一条约束，可能比多读几页更贵。这是建议的评估方法，不是已完成实验。</p>
-<p><strong>适用边界。</strong>适合资料量大、局部相关性强、能够可靠定位原文的任务。权限约束与必要任务指令应明确提供；引用不可访问时要报告缺证，不能用摘要冒充原文。外部资料进入上下文，也不因此获得指挥工具执行的权限。</p>
-<div class="sources"><a href="https://www.anthropic.com/research/effective-context-engineering-for-ai-agents">Anthropic 原文 · 2025-09-29，核验 2026-10-24（UTC+8） ↗</a><a href="2026-10-22-gates-and-feedback.html">相关阅读：第012期，ReAct 如何接收外部反馈 ↗</a></div></section>
-<section class="story" id="backend"><p class="kicker">02 / 后端与架构 · 技术分享 · 模式选读</p><h2>事务提交了，通知还没发出去怎么办？</h2><p class="lead">把“需要通知”也写进同一笔事务。</p>
-<p><strong>来源坐标。</strong>AWS Prescriptive Guidance 的 Transactional outbox 指南为滚动文档，本页未单列发布日期；本节按 2026 年 10 月 24 日（UTC+8）可见内容选读，不对应某个数据库新版本。</p>
-<p><strong>官方机制。</strong>数据库更新与消息发送是两次独立写入：一边成功、另一边失败，会留下不一致。发件箱模式将业务记录和待发事件写入同一个数据库事务；另一个服务只读取已提交事件，再发送给消息系统。事务回滚时，事件记录也回滚。</p>
-<figure><img src="assets/outbox-014.png" width="900" height="1100" alt="事务发件箱流程：同一事务提交业务记录和事件；转发器读取已提交事件发送；消费者按事件ID去重。发送成功但尚未记录成功时可能重复投递，不能重复扣款。" loading="lazy"><figcaption>本刊原创架构图，依据 AWS 发件箱指南；消费者原子去重是编辑落地建议。箭头表示处理顺序，不代表端到端恰好一次或延迟保证。</figcaption></figure>
-<p><strong>最容易误解的边界。</strong>发件箱解决的是“业务与待发事件一起落库”，并未让数据库和远程消息系统变成同一个事务。转发器发出消息后、记录成功前崩溃，恢复时可能再发一次。AWS 因此提醒处理重复消息与通知顺序。</p>
-<div class="method"><p><strong>编辑落地建议。</strong>为每个业务事件分配稳定 ID；消费者把“已处理 ID”与业务变更放进自己的原子提交里。若副作用是远程扣款，仍需下游幂等接口或结果核查，单靠本地去重表无法封住所有故障窗口。</p><p>需要同一订单的顺序时，明确订单键与递增序号，并处理并行转发和迟到事件。观察待发数量、最老事件年龄与失败原因；积压没有清空之前，提交成功不等于下游已完成。</p></div>
-<p><strong>适用场景。</strong>适合订单、库存等需要在本地业务提交后发出事件的服务。它引入异步延迟、转发器维护和清理成本；跨服务的业务回滚仍需独立设计。本文不声称吞吐提升，也不把消息系统的去重等同于任意业务副作用只发生一次。</p>
-<div class="sources"><a href="https://docs.aws.amazon.com/prescriptive-guidance/latest/cloud-design-patterns/transactional-outbox.html">AWS 官方指南 · 滚动文档，核验 2026-10-24（UTC+8） ↗</a><a href="2026-10-23-confirm-and-retry.html">相关阅读：第013期，数据库隔离与事务重试 ↗</a></div></section>
-<section class="story" id="news"><p class="kicker">03 / 科技新闻 · 官方公告 2026-10-23</p><h2>GitHub Apps 的企业级安装正式可用</h2><p class="lead">更多治理自动化，可以从个人令牌迁向应用身份。</p>
-<p><strong>官方发布。</strong>GitHub 在 10 月 23 日公告中宣布企业级 GitHub Apps 安装正式可用，扩展企业与组织自动化可调用的 API 和权限。覆盖方向包括仓库策略与规则集、绕过请求读取、双因素认证要求、域名验证、IP 允许列表及企业管理设置。</p>
-<p><strong>版本与权限边界。</strong>公告称这些更新将进入 GHES 3.24；这不是说所有旧版自托管实例已具备同样能力。应用仍需在设置中选择对应权限，不能把“支持某项 API”理解成“安装后自动拥有全部管理权”。原文也未宣称已覆盖所有经典 PAT 使用场景。</p>
-<p><strong>编辑分析。</strong>值得先盘点定时任务真正调用哪些端点，再逐项核对权限和安装范围。迁移可先选一个只读报告任务，对比返回结果，再推进写入任务；遇到不支持的端点应留下清单。应用身份改善管理方式，但并不自动修复脚本逻辑或消除高权限操作风险。</p>
-<p><strong>事实范围。</strong>以上记录公告中的支持面与计划版本；本刊没有在企业账户中开启设置，也没有做兼容性或安全收益实测。</p>
-<div class="sources"><a href="https://github.blog/changelog/2026-10-23-enterprise-installations-for-github-apps-generally-available/">GitHub 原始公告 · 2026-10-23，核验 2026-10-24（UTC+8） ↗</a></div></section>
-<section class="story" id="curiosity"><p class="kicker">04 / 科技趣闻 · 历史命名档案</p><h2>一场手写误读，真的变成了星名</h2><p class="lead">Zoozve 的名字，起点是一张儿童太阳系海报。</p>
-<p><strong>NASA 档案。</strong>金星的准卫星 Zoozve 于 2002 年 11 月 11 日被发现，临时编号是 2002 VE68。画家 Alex Foster 制作海报时记下“2002 VE”，后来把自己的字迹读成了“Zoozve”。Radiolab 主持人 Latif Nasser 追查这个名字，并建议发现者 Brian Skiff 申请正式命名；NASA 记载该名称于 2024 年 2 月获批。</p>
-<p><strong>它不是金星的月亮。</strong>NASA 将准卫星解释为绕太阳运行、同时保持在某颗行星附近的小行星。金星没有天然卫星；“准”字不能省略，也不能据此画成一个绕金星运行的普通月球。</p>
-<p><strong>编辑观察。</strong>科学记录通常要纠正转录错误，这个故事却把错误保留为可追溯的名字。趣味不在于编号可以随便写，而在于一张海报、一次追问与正式命名程序，最后连到了同一个天体。本文为历史趣闻，未宣称今天发现了新卫星。</p>
-<div class="sources"><a href="https://science.nasa.gov/venus/venus-facts/">NASA Venus Facts · Moons / How Zoozve Got Its Name；页面未单列发布日期，核验 2026-10-24（UTC+8） ↗</a></div></section></main></div>
-<footer><p>技术晨刊 · 014 · LESS NOISE. MORE SIGNAL.</p><p>封面与流程图由本刊原创设计；官方机制、厂商公告与编辑建议随文区分，无独立性能实测。四个栏目完整同步至公众号阅读稿。</p><p><a href="2026-10-24-context-and-outbox.html">本期固定链接</a> · <a href="archive.html">往期归档</a></p></footer></body></html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><meta name="theme-color" content="#142d38"><title>把边界画清，把下一页接稳 · 技术晨刊015</title><meta name="description" content="三篇独立阅读：Agent Shell沙箱、PostgreSQL游标分页、Copilot用量与Rosetta自拍。"><link rel="canonical" href="https://news.liuyifei.tech/2026-10-25-boundaries-and-cursors.html"><link rel="stylesheet" href="assets/style-015.css"><link rel="icon" href="assets/favicon.svg"><meta property="og:title" content="把边界画清，把下一页接稳"><meta property="og:url" content="https://news.liuyifei.tech/2026-10-25-boundaries-and-cursors.html"><meta property="og:image" content="https://news.liuyifei.tech/assets/news-015.png"></head><body><a class="skip" href="#main">跳至正文</a><header><a class="brand" href="index.html">技术晨刊<span>THE TECH MORNING</span></a><nav aria-label="主导航"><a href="2026-10-25-boundaries-and-cursors.html">本期合集</a><a href="archive.html">往期归档 ↗</a></nav></header><div class="shell"><section class="hero"><p class="eyebrow">ISSUE 015 / <time datetime="2026-10-25">2026.10.25 · 星期日 · UTC+8</time></p><p class="eyebrow">LESS NOISE. MORE SIGNAL.</p><h1>把边界画清，<br><span>把下一页接稳。</span></h1><p class="intro">今天换一种读法：一个技术，讲透一个问题。<br>再留一点时间，看看工具里的新变化与太空里的旧照片。</p><nav class="picks" aria-label="三篇文章与正文跳转"><a href="#agent"><small>01 / AGENT 技术解析</small><strong>让 Agent 放手跑测试之前，先把沙箱边界画清楚</strong><span>阅读全文 ↓</span></a><a href="#backend"><small>02 / 后端技术解析</small><strong>翻到第 500 页为什么变慢？把 OFFSET 换成游标之前</strong><span>阅读全文 ↓</span></a><a href="#news"><small>03 / 科技动态</small><strong>AI 用量终于补进报表，一张太空自拍也值得重看</strong><span>阅读全文 ↓</span></a></nav><p class="issue-note">两篇技术深读，一篇精选动态。资料核验于 2026-10-25（UTC+8）；历史机制与影像均注明原始时间。</p></section><main id="main"><article class="story" id="agent"><div class="story-inner"><p class="eyebrow">01 / AGENT 技术解析</p><h2>让 Agent 放手跑测试之前，先把沙箱边界画清楚</h2><p class="byline">明天又整什么 · 2026-10-25 · UTC+8</p><p class="article-link"><a href="2026-10-25-agent-sandbox.html">独立阅读与分享本篇 ↗</a></p><p class="lead">让 Agent 自己跑测试，和把整台电脑交给它，中间应该有一道真正的门。</p>
+<p>你让一个编码 Agent 修复导出功能。它读代码、改文件，接着想运行测试。你点了一次允许。测试又拉起脚本，脚本再启动另一个进程——这时，你批准的究竟是一行命令，还是它接下来能碰到的一切？</p>
+<p>今天只拆一个机制：<strong>编码 Agent 的 Shell 沙箱</strong>。以 Claude Code 为例，重点不是模型会不会听话，而是即使它走错路，执行环境还允许它走多远。这是已有工程机制的选读，不是今日新功能发布。</p>
+<h3>把“别碰”从提示词变成执行边界</h3>
+<p>提示词里的“不要修改项目外文件”是一条行为要求。沙箱则在操作系统层限制进程访问资源：哪些路径可写，哪些位置不可读，网络能连到哪里。模型可以提出动作，但不能仅靠提出动作就获得资源。</p>
+<p>Anthropic 2025 年的原文介绍，运行时在 Linux 使用 bubblewrap、在 macOS 使用 Seatbelt，限制也覆盖命令启动的子进程。2026 年的后续文章把这件事概括为控制潜在损害范围。两篇文章讨论的是防线设计，不是“沙箱永远无法被突破”的承诺。</p>
+<figure><img src="assets/agent-body-015.png" width="900" height="1100" alt="原创沙箱图：Agent发起Shell命令，命令及子进程经过文件与网络两道边界；项目目录允许写，敏感目录和未批准网络拒绝。其他工具需独立设权。"><figcaption>本刊原创机制图。展示的是本文建议的任务边界，不是产品默认权限清单；其他工具不因 Shell 受限而自动受限。</figcaption></figure>
+<h3>仍然用“修导出”这个任务走一遍</h3>
+<p>假设项目在 <code>/work/exporter</code>。一个可审查的任务配置是：代码目录可写，依赖缓存按需要开放；私人文件与凭据目录拒绝读取；默认不出网，需要安装依赖时再明确允许目标服务。这里是编辑设计示例，不是可直接复制的产品配置。</p>
+<p>这样，测试可以生成报告、创建临时文件。即使某个测试脚本启动子进程，它也仍在同一执行边界里。若脚本试图读私人目录或连接未批准地址，应由边界拒绝，而不是等模型自觉停下来。</p>
+<p>失败信息也很重要。一次“连接被拒绝”，可能表示依赖确实缺失，也可能表示脚本正在做任务之外的事。先看它要访问什么，再判断是否应当开放。把整个网络放开，只是把问题藏回去了。</p>
+<h3>为什么文件和网络要一起管</h3>
+<p>只限制写文件，仍可能把可读内容发出去；只限制网络，又可能让进程改写以后会执行的配置。两道边界共同缩小风险，但每一项允许都仍有含义：能向某个代码托管域名发请求，不等于只能访问你自己的仓库。</p>
+<p>当前官方文档还特别说明，内置代理默认不检查加密连接里的内容。<strong>“域名在名单上”不是“请求内容已经安全审核”。</strong>因此，不应把敏感数据直接放进可读范围，再寄希望于一个宽泛的域名名单替你兜底。</p>
+<h3>最容易漏掉的是沙箱外的工具</h3>
+<p>按本次核验的 Claude Code 滚动文档，Shell 沙箱覆盖 Shell 命令及其子进程；文件工具、MCP 服务与 hooks 不在这一沙箱里。若另一个连接器能改线上数据，Shell 再严格，也没有限制那条路径。工具权限需要独立检查。</p>
+<p>同样，沙箱不能判断业务结果对不对。在允许写入的项目内删错文件，仍可能完全符合资源边界。代码差异审查、测试和发布权限，解决的是不同层次的问题。</p>
+<h3>上线前，验证“拦得住”也验证“做得完”</h3>
+<p>可以在不含真实秘密的测试工作区做一次边界验收：正常导出测试应完成；子进程读取一个专门放在禁止路径下的无害样本应失败；访问一个未批准的测试地址也应失败。然后检查拒绝记录，确认不是“任务失败后悄悄在沙箱外重跑”。这些是建议的验收步骤，本刊未做产品安全实测。</p>
+<p>取舍就在这里：收紧边界会增加依赖配置与兼容性维护，放宽边界又会扩大一次误操作的影响。适合从一个边界清楚的修复任务开始，让 Agent 在里面充分行动，再根据真实需要扩大范围。<strong>自主执行的前提，是先知道自主发生在哪里。</strong></p>
+<div class="sources"><h3>来源与版本</h3><p>核验日期：2026-10-25（UTC+8）。工程机制选读，未绑定某个安装版本；实际行为以所用版本及策略为准。</p><ul><li><a href="https://www.anthropic.com/research/claude-code-sandboxing">Anthropic：Beyond permission prompts</a>，原发 2025-10-20。</li><li><a href="https://www.anthropic.com/research/how-we-contain-claude">Anthropic：How we contain Claude across products</a>，原发 2026-05-25。</li><li><a href="https://code.claude.com/docs/en/sandboxing">Claude Code：Configure the sandboxed Bash tool</a>，滚动文档，未单列原始发布日期；本次核对覆盖范围与安全限制。</li></ul><p>相关阅读：<a href="2026-10-22-gates-and-feedback.html">第012期：凭据与依赖入口</a>。</p></div>
+</div></article><article class="story" id="backend"><div class="story-inner"><p class="eyebrow">02 / 后端技术解析</p><h2>翻到第 500 页为什么变慢？把 OFFSET 换成游标之前</h2><p class="byline">明天又整什么 · 2026-10-25 · UTC+8</p><p class="article-link"><a href="2026-10-25-keyset-pagination.html">独立阅读与分享本篇 ↗</a></p><p class="lead">用户只是再往下滑一屏，数据库为什么要从头数到第十万行？</p>
+<p>订单后台最初只有几百条记录。接口写成 <code>LIMIT 20 OFFSET 0</code>，简单好用。后来业务变大，翻到深处越来越慢；有人刚翻完第一页，第二页竟又见到同一笔订单。</p>
+<p>这两个现象可以用同一个主题解释：<strong>分页到底记住的是位置，还是边界？</strong>今天用 PostgreSQL 18 的语义拆解游标分页，也叫 keyset pagination。它不是某个新版本刚推出的魔法功能，而是一种查询设计。</p>
+<h3>先把“第几页”换成“从哪一条继续”</h3>
+<p>OFFSET 说的是：先跳过这么多行，再取结果。PostgreSQL 文档明确提醒，被跳过的行仍须在服务端计算，所以大偏移量可能低效。即使有索引，“跳过十万条”也不等于免费移动到一个数组下标。</p>
+<p>还有一个更直观的问题。按创建时间倒序看订单，第一页显示 A、B、C。此时新订单 X 插到最前面，第二次请求再跳过三条，列表变成 X、A、B、C……你就又拿到了 C。这是位置变化导致的重复，不是数据库忘了去重。</p>
+<figure><img src="assets/backend-body-015.png" width="900" height="1100" alt="原创分页示意：第一页A B C之后新增X，OFFSET跳过三条会再次返回C；以C的排序键作游标则从D继续。示例假设已有排序键不变。"><figcaption>本刊原创示例。字母表示同一筛选条件下的稳定排序；演示插入造成的位置变化，不是数据库性能测试。</figcaption></figure>
+<h3>一个时间戳还不够</h3>
+<p>游标记住上一页最后一条记录的排序键。下一页问“在它之后的记录有哪些”，不再问“排在第六十一位的是谁”。不过，只按 <code>created_at</code> 排序不够：同一时刻可能有多笔订单，必须加一个唯一的决胜字段。</p>
+<p>下面约定 <code>id</code> 是唯一主键，<code>created_at</code> 非空且创建后不改；租户由服务端鉴权上下文决定。每页显示 20 条，但查询 21 条，用额外一条判断是否还有下一页：</p>
+<pre><code>SELECT id, created_at, total_cents
+FROM orders
+WHERE tenant_id = $1
+  AND (created_at, id) &lt; ($2, $3)
+ORDER BY created_at DESC, id DESC
+LIMIT 21;</code></pre>
+<p><code>$2</code>、<code>$3</code> 是上一页最后一条<strong>实际展示</strong>的记录，不是多查出来的第 21 条。第一页省略游标条件。倒序对应小于号；同一时间下再比较 ID，才不会把同一秒里的其余订单一起跳掉。</p>
+<p>PostgreSQL 的行值比较从左往右找到第一个决定结果的字段。这正好对应上面的排序。不要把升序、降序混搭后仍照抄这个条件，也不要忽略空值：参与比较的空值可能让判断成为 unknown。本文通过非空约束避开这个分支。</p>
+<h3>索引要和这个问题一起设计</h3>
+<pre><code>CREATE INDEX orders_tenant_feed_idx
+ON orders (tenant_id, created_at DESC, id DESC);</code></pre>
+<p>等值过滤的租户放前面，后面跟排序键。这给数据库提供了按租户定位、沿排序边界继续读的路径；不是承诺任何数据分布下都会选择它。新增状态过滤、复杂关联或者很宽的返回列，都可能改变计划与成本。</p>
+<p>真正验收时，拿代表性的首屏与深页查询查看 <code>EXPLAIN (ANALYZE, BUFFERS)</code>，关注实际读行、排序与缓冲区访问。该命令会执行查询，应先在合适的测试数据上使用。这里给的是检查方法，没有虚构“快了多少倍”。</p>
+<h3>游标不是权限，也不是快照</h3>
+<p>实现接口时，我会让游标携带时间、ID、筛选条件摘要和格式版本，并做完整性校验。它只是续读提示；服务端每次仍要重新验证租户与访问权限。把 JSON 做成 Base64，并不会让它变得不可篡改。</p>
+<p>更重要的是，游标只能减少“前面新增记录导致后面位次平移”的影响。若排序键会变，一条记录仍可能跨过边界而重复或漏读；已删除的记录也不会凭空回来。所以订单流适合不可变的创建时间，频繁修改的更新时间流要另想清楚语义。</p>
+<p>财务导出若要求“某一刻的完整集合”，不能靠跨多次普通 HTTP 请求携带游标来保证。应该另行定义一致快照或离线导出任务。游标解决续读，不负责冻结世界。</p>
+<h3>那“直接跳到第 500 页”呢？</h3>
+<p>这恰好是它不擅长的地方：没有前一页边界，就无法直接接着读。无限滚动、按时间查看订单很合适；随机跳页、精确总页数，可能仍值得保留偏移分页或单独维护导航信息。</p>
+<p>因此，别把一次查询改写当成所有分页需求的统一答案。先确定用户是要“继续看”，还是要“按页码定位”。当需求确实是继续看时，记住上一条，比反复从头数更贴近问题本身。</p>
+<div class="sources"><h3>来源与版本</h3><p>版本基线：PostgreSQL 18。以下为持续维护的官方手册，页面未单列原始发布日期；核验 2026-10-25（UTC+8）。SQL、订单场景与游标封装为编辑示例，未声称完成性能实测。</p><ul><li><a href="https://www.postgresql.org/docs/18/queries-limit.html">7.6 LIMIT and OFFSET</a>：稳定排序与大偏移成本。</li><li><a href="https://www.postgresql.org/docs/18/functions-comparisons.html">9.25 Row and Array Comparisons</a>：行值比较与空值。</li><li><a href="https://www.postgresql.org/docs/18/indexes-ordering.html">11.4 Indexes and ORDER BY</a>；<a href="https://www.postgresql.org/docs/18/indexes-multicolumn.html">11.3 Multicolumn Indexes</a>：索引排序与前导约束。</li><li><a href="https://www.postgresql.org/docs/18/using-explain.html">14.1 Using EXPLAIN</a>：执行计划核验。</li></ul><p>相关阅读：<a href="2026-10-23-confirm-and-retry.html">第013期：事务隔离与重试</a>。</p></div>
+</div></article><article class="story" id="news"><div class="story-inner"><p class="eyebrow">03 / 科技动态</p><h2>AI 用量终于补进报表，一张太空自拍也值得重看</h2><p class="byline">明天又整什么 · 2026-10-25 · UTC+8</p><p class="article-link"><a href="2026-10-25-weekend-signals.html">独立阅读与分享本篇 ↗</a></p><p class="lead">一边是终于补进报表的 AI 使用量，一边是一张十二年前的太空自拍。今天值得看的，是数字与画面背后容易漏掉的那一层。</p>
+<p>这份周日动态只留两件事：一项直接影响开发团队观察工具使用情况的更新，以及一张被重新选中的航天照片。第一件是本周新公告，第二件是新推荐里的旧影像，时间先说清楚。</p>
+<h3>AI 工具换了入口，统计也得跟上</h3>
+<p>如果团队有人在 IDE 里用 Copilot，有人在 OpenCode 等工具中把 Copilot 当模型服务，过去看编辑器统计，可能看不全后者的用量。</p>
+<p>GitHub 10 月 23 日的公告补上了这个缺口：Copilot usage metrics API 新增 <code>totals_by_client</code>，在企业、组织及相应用户级的 1 天、28 天报告中按客户端展示请求与 token 等用量。官方举例包括 OpenCode；这不是“OpenCode 的所有活动都被 GitHub 收集”，范围是经由 Copilot 的模型流量。</p>
+<p>有两个小字比大标题更值得读。<code>request_count</code> 数的是成功的模型调用，不是一条用户提示；一个提示可能触发多次调用。客户端分类又来自请求携带的集成标识，是尽力归类，不能当作经过验证的身份。</p>
+<p>所以，报表里某个入口突然变多，先别急着解释成“大家产出翻倍”。也可能是过去没进统计的流量，现在终于进来了。<strong>用量、产出与质量，是三个不同的问题。</strong></p>
+<p>我的阅读结论是：这项更新更适合拿来讨论团队要支持哪些入口，以及旧报表漏看了什么。看一个工具是否有价值，仍要结合任务完成、代码审查和返工；不能用 token 数给工程师排座次。这是编辑分析，并非 GitHub 的效果承诺。</p>
+<p>访问也有门槛：需要相应角色或查看指标权限，并开启 Copilot usage metrics 策略。官方 API 文档说明报告按日生成；它不是实时监控屏。公告描述的是 API 增量变化，没有给出一个需要安装的客户端版本号。</p>
+<h3>这张“自拍”，拍摄者其实还没离开母船</h3>
+<p>NASA 的 10 月 24 日每日天文图选中了 Rosetta 的一张自拍。别被当天日期误导：照片拍于 <strong>2014 年 10 月 7 日</strong>，ESA 在同月 14 日发布。那时它距离彗星 67P 表面约 16 公里。</p>
+<figure><img src="assets/rosetta-015.png" width="1200" height="1200" alt="Rosetta探测器侧面与太阳翼在前景，67P彗星位于背景；Philae上的CIVA相机于2014年10月7日拍摄，两次曝光合成。" loading="lazy"><figcaption>© ESA/Rosetta/Philae/CIVA。2014-10-07 拍摄，2014-10-14 原始发布；两次不同曝光合成，非本刊生成。按 ESA Standard Licence 用于编辑性科普，原图按比例缩放、本地托管。</figcaption></figure>
+<p>前景是探测器的一侧和一片 14 米长的太阳翼，背景则是那颗形状特别的彗星。掌镜的不是远处另一艘飞船，而是仍搭载在 Rosetta 上的 Philae 着陆器的 CIVA 相机。</p>
+<p>画面还有一个很“摄影”的细节：亮处和暗处差异太大，于是团队合并了两张不同曝光时间的照片，才把两边的细节一起呈现出来。ESA 原始说明与 NASA 本次介绍都提到了这一点。它是处理过的科学影像，不应被描述成手机随手拍的一次曝光。</p>
+<p>我喜欢它的原因并不玄：太空任务常以轨道和参数出现，而这张照片让机器自己的边缘也进入画面。太阳翼不再只是规格表上的一个长度，成了观看彗星的前景。原始影像的吸引力，已经足够，不需要再给它补一个虚构的故事。</p>
+<p>从工具报表到航天照片，今天这两条都有个值得保留的阅读习惯：看见结果时，多问一句“它怎样被记录下来”。你会少误读一些数字，也多看见一点细节。</p>
+<div class="sources"><h3>来源与时间</h3><p>统一核验：2026-10-25（UTC+8）。公告事实、历史记录与编辑分析已在正文区分；无传闻、无独立效果实测。</p><ul><li><a href="https://github.blog/changelog/2026-10-23-usage-metrics-api-adds-usage-from-tools-like-opencode/">GitHub：Usage metrics API adds usage from tools like OpenCode</a>，原发 2026-10-23；<a href="https://docs.github.com/en/rest/copilot/copilot-usage-metrics">对应 API 文档</a>，滚动维护，核对权限与日更报告。</li><li><a href="https://science.nasa.gov/image-article/apod-2026-october-24-rosettas-selfie/">NASA APOD：Rosetta’s Selfie</a>，本次推荐 2026-10-24。</li><li><a href="https://www.esa.int/ESA_Multimedia/Images/2014/10/Rosetta_mission_selfie_at_16_km">ESA 原始影像与说明</a>，原发 2014-10-14；拍摄 2014-10-07，与 NASA 交叉核对。</li><li><a href="https://www.esa.int/ESA_Multimedia/Terms_and_conditions_of_use_of_images_and_videos_available_on_the_esa_website">ESA 影像使用条款</a>，页面更新 2024-01-18。封面为本刊原创，不使用 ESA 标志或暗示其背书。</li></ul></div>
+</div></article></main></div><footer><p>技术晨刊 015 · 2026.10.25 · LESS NOISE. MORE SIGNAL.</p><p>作者：明天又整什么。三篇独立文章，完整汇于本页；技术资料选读、新闻事实与编辑分析分别注明。</p><p><a href="2026-10-25-boundaries-and-cursors.html">本期固定合集</a> · <a href="archive.html">往期归档</a></p></footer></body></html>

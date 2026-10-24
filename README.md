@@ -6,6 +6,8 @@
 
 - `index.html`：最新一期的完整 HTML，不是跳转页。
 - `YYYY-MM-DD-short-topic.html`：每期固定链接；日期采用 UTC+8。
+- 自第015期起，每期含三篇可独立阅读的完整文章：Agent单主题解析、后端单主题解析、精选科技动态；各篇另有 `YYYY-MM-DD-topic.html` 固定页，合集与首页保留三篇全文。`issues.json` 的可选 `articles` 数组登记独立文章，期次仍每天一条。
+- `assets/style-015.css`：第015期新版共享排版，历史样式与资源全部保留。配图署名记录见 `assets/credits-015.json`。
 - `archive.html`：完整历史目录，最新在前。只链接实际存在的期次。
 - `issues.json`：仅期次索引，不保存文章内容，也不生成页面。
 - `assets/style-v1.2.css`：首期当前共享样式（v1 与 v1.1 保留）；破坏性改版新建 v2 等版本，保留旧版文件。
