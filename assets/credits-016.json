@@ -1,0 +1,59 @@
+{
+  "issue": "016",
+  "images": [
+    {
+      "file": "agent-replay-016.png",
+      "creator": "技术晨刊",
+      "method": "Pillow deterministic typography and original diagrams",
+      "rights": "Original editorial graphic; no third-party images",
+      "description": "中断恢复时会从节点开头重跑；若先创建审核记录再调用 interrupt，一次恢复可能再次创建记录。"
+    },
+    {
+      "file": "agent-design-016.png",
+      "creator": "技术晨刊",
+      "method": "Pillow deterministic typography and original diagrams",
+      "rights": "Original editorial graphic; no third-party images",
+      "description": "报告任务分成准备、确认、执行三个节点；保存报告版本，用相同 thread_id 恢复，并以稳定发送键去重。"
+    },
+    {
+      "file": "agent-boundary-016.png",
+      "creator": "技术晨刊",
+      "method": "Pillow deterministic typography and original diagrams",
+      "rights": "Original editorial graphic; no third-party images",
+      "description": "使用持久化 checkpointer；发送成功但回执未存时先查询状态；验收重启恢复与重复请求。"
+    },
+    {
+      "file": "backend-queue-016.png",
+      "creator": "技术晨刊",
+      "method": "Pillow deterministic typography and original diagrams",
+      "rights": "Original editorial graphic; no third-party images",
+      "description": "worker 1 锁定任务 A 时，worker 2 用 SKIP LOCKED 跳过 A 并领取 B；这会得到不完整的数据视图。"
+    },
+    {
+      "file": "backend-claim-016.png",
+      "creator": "技术晨刊",
+      "method": "Pillow deterministic typography and original diagrams",
+      "rights": "Original editorial graphic; no third-party images",
+      "description": "短事务中锁定 ready 任务并改为 running，提交后执行，最后用领取令牌确认；旧 worker 的令牌不能覆盖新领取结果。"
+    },
+    {
+      "file": "backend-limits-016.png",
+      "creator": "技术晨刊",
+      "method": "Pillow deterministic typography and original diagrams",
+      "rights": "Original editorial graphic; no third-party images",
+      "description": "租约超时回收、有限重试、业务幂等和老任务监控需要应用实现；不承诺严格先进先出。"
+    },
+    {
+      "file": "news-review-016.png",
+      "creator": "技术晨刊",
+      "method": "Pillow deterministic typography and original diagrams",
+      "rights": "Original editorial graphic; no third-party images",
+      "description": "GitHub 在10月22日宣布可保存跨 PR 的个人空白显示偏好，分栏视图新增或删除文件可占满两栏。编辑建议检查语义敏感缩进时查看完整差异。"
+    },
+    {
+      "file": "cover-016.png",
+      "creator": "技术晨刊",
+      "rights": "Original editorial graphic"
+    }
+  ]
+}
