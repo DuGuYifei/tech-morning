@@ -1,5 +1,14 @@
 [
   {
+    "date": "2026-10-27",
+    "title": "重复的工作，只做一遍",
+    "path": "2026-10-27-reuse-the-work.html",
+    "issue": "017",
+    "theme": "Agent前缀缓存、请求合并与声音联机",
+    "summary": "Claude提示缓存 · Go singleflight · Simon Willison的Battle Drones",
+    "updated": "2026-10-27"
+  },
+  {
     "date": "2026-10-26",
     "title": "继续之前，先记住做到哪",
     "path": "2026-10-26-resume-and-claim.html",

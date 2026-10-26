@@ -1,0 +1,48 @@
+{
+  "issue": "017",
+  "date": "2026-10-27",
+  "creator": "技术晨刊 / 明天又整什么",
+  "method": "Pillow确定性排版与原创矢量形状栅格化；非来源截图",
+  "external_images": false,
+  "files": [
+    {
+      "path": "assets/agent-prefix-017.png",
+      "credit": "本刊原创信息图",
+      "source_note": "图 1 · 客服 Agent 的提示结构示例。缓存断点位于稳定内容块末尾。"
+    },
+    {
+      "path": "assets/agent-hit-017.png",
+      "credit": "本刊原创信息图",
+      "source_note": "图 2 · 6,000 tokens 是编辑假设，用来说明复用对象，不是实测节省率。"
+    },
+    {
+      "path": "assets/agent-limits-017.png",
+      "credit": "本刊原创信息图",
+      "source_note": "图 3 · 短时间内重复长背景更适合缓存。频繁改工具或背景会降低复用。"
+    },
+    {
+      "path": "assets/backend-flight-017.png",
+      "credit": "本刊原创信息图",
+      "source_note": "图 4 · 100 人是情境假设，图中取三个代表。仅合并执行时间重叠的调用。"
+    },
+    {
+      "path": "assets/backend-flow-017.png",
+      "credit": "本刊原创信息图",
+      "source_note": "图 5 · 商品读取的编辑设计。私有定价还需纳入用户或权限范围，先鉴权再合并。"
+    },
+    {
+      "path": "assets/backend-limits-017.png",
+      "credit": "本刊原创信息图",
+      "source_note": "图 6 · 合并范围是 Group；这不是分布式锁，也不提供持久缓存或恰好一次写入。"
+    },
+    {
+      "path": "assets/news-drones-017.png",
+      "credit": "本刊原创信息图",
+      "source_note": "图 7 · 根据作者博客原创整理；非 X 或游戏截图。原文含后续更正，已一并纳入。"
+    },
+    {
+      "path": "assets/cover-017.png",
+      "credit": "本刊原创封面"
+    }
+  ]
+}
