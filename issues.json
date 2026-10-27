@@ -1,5 +1,14 @@
 [
   {
+    "date": "2026-10-28",
+    "title": "完成之前，先对一眼真实状态",
+    "path": "2026-10-28-check-the-state.html",
+    "issue": "018",
+    "theme": "Agent结果验收、乐观并发与网页工具",
+    "summary": "Agent outcome验收 · PostgreSQL版本条件更新 · Jeff Lindsay的webframe",
+    "updated": "2026-10-28"
+  },
+  {
     "date": "2026-10-27",
     "title": "重复的工作，只做一遍",
     "path": "2026-10-27-reuse-the-work.html",

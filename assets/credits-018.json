@@ -1,0 +1,46 @@
+{
+  "issue": "018",
+  "date": "2026-10-28",
+  "creator": "技术晨刊",
+  "images": [
+    {
+      "path": "agent-outcome-018.png",
+      "type": "original deterministic diagram",
+      "source": "Anthropic evals / PostgreSQL 18 / tractordev webframe as linked in article"
+    },
+    {
+      "path": "agent-grader-018.png",
+      "type": "original deterministic diagram",
+      "source": "Anthropic evals / PostgreSQL 18 / tractordev webframe as linked in article"
+    },
+    {
+      "path": "agent-boundary-018.png",
+      "type": "original deterministic diagram",
+      "source": "Anthropic evals / PostgreSQL 18 / tractordev webframe as linked in article"
+    },
+    {
+      "path": "backend-race-018.png",
+      "type": "original deterministic diagram",
+      "source": "Anthropic evals / PostgreSQL 18 / tractordev webframe as linked in article"
+    },
+    {
+      "path": "backend-cas-018.png",
+      "type": "original deterministic diagram",
+      "source": "Anthropic evals / PostgreSQL 18 / tractordev webframe as linked in article"
+    },
+    {
+      "path": "backend-boundary-018.png",
+      "type": "original deterministic diagram",
+      "source": "Anthropic evals / PostgreSQL 18 / tractordev webframe as linked in article"
+    },
+    {
+      "path": "news-webframe-018.png",
+      "type": "original deterministic diagram",
+      "source": "Anthropic evals / PostgreSQL 18 / tractordev webframe as linked in article"
+    },
+    {
+      "path": "cover-018.png",
+      "type": "original typography"
+    }
+  ]
+}
