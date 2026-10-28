@@ -1,0 +1,11 @@
+{
+  "issue": "019",
+  "images": "七张信息卡与封面由本刊以 Pillow 确定性原创绘制",
+  "external_images": false,
+  "sources": [
+    "Anthropic",
+    "PostgreSQL 18",
+    "Steve Francia"
+  ],
+  "script": "build-019.py"
+}

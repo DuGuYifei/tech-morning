@@ -1,5 +1,14 @@
 [
   {
+    "date": "2026-10-29",
+    "title": "减掉上下文，别丢掉下一步",
+    "path": "2026-10-29-keep-the-next-step.html",
+    "issue": "019",
+    "theme": "上下文压缩、数据库通知与胸牌掌机",
+    "summary": "Agent压缩交班 · PostgreSQL LISTEN/NOTIFY · Steve Francia胸牌模拟器",
+    "updated": "2026-10-29"
+  },
+  {
     "date": "2026-10-28",
     "title": "完成之前，先对一眼真实状态",
     "path": "2026-10-28-check-the-state.html",
